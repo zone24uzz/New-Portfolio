@@ -1,0 +1,355 @@
+"use client"
+
+import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect } from "react"
+
+const consoleErrors = [
+  "TypeError: Cannot read property 'undefined' of null",
+  "Uncaught ReferenceError: reality is not defined",
+  "Warning: Memory leak detected in component <Brain />",
+  "Error: Maximum update depth exceeded",
+  "SyntaxError: Unexpected token 'dreams'",
+]
+
+const brokenElements = [
+  { text: "div", broken: "d̷̰̍i̸̱͝v̶̱̈́" },
+  { text: "button", broken: "b̴͎̽ụ̶̓ṭ̸̛t̵̲̎o̶͖͝n̵̰̕" },
+  { text: "component", broken: "c̸̣̈́o̵͓̒m̷̱̌p̴̱̾o̷͙̍n̷̨̎e̸̝̐n̶̰̊t̶̝̀" },
+]
+
+function GlitchText({ children }: { children: string }) {
+  const [isGlitching, setIsGlitching] = useState(false)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsGlitching(true)
+      setTimeout(() => setIsGlitching(false), 200)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <span className={`relative ${isGlitching ? "glitch" : ""}`}>
+      <span className="relative z-10">{children}</span>
+      {isGlitching && (
+        <>
+          <span
+            className="absolute inset-0 text-destructive"
+            style={{ clipPath: "inset(20% 0 30% 0)", transform: "translateX(-2px)" }}
+          >
+            {children}
+          </span>
+          <span
+            className="absolute inset-0 text-cyan-400"
+            style={{ clipPath: "inset(50% 0 20% 0)", transform: "translateX(2px)" }}
+          >
+            {children}
+          </span>
+        </>
+      )}
+    </span>
+  )
+}
+
+function ConsoleOverlay({ errors }: { errors: string[] }) {
+  return (
+    <motion.div
+      className="absolute inset-4 md:inset-8 glass-strong rounded-xl border border-destructive/30 overflow-hidden font-mono text-sm"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 1.1 }}
+    >
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-destructive/20 bg-destructive/10">
+        <div className="w-3 h-3 rounded-full bg-destructive" />
+        <span className="text-destructive">Console - Reality Corruption Detected</span>
+      </div>
+      <div className="p-4 space-y-2 max-h-[300px] overflow-y-auto">
+        {errors.map((error, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.2 }}
+            className="flex items-start gap-2 text-destructive/80"
+          >
+            <span className="text-destructive">✕</span>
+            <span>{error}</span>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  )
+}
+
+function FixingAnimation({ onComplete }: { onComplete: () => void }) {
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((p) => {
+        if (p >= 100) {
+          clearInterval(interval)
+          setTimeout(onComplete, 500)
+          return 100
+        }
+        return p + 5
+      })
+    }, 100)
+    return () => clearInterval(interval)
+  }, [onComplete])
+
+  return (
+    <motion.div
+      className="absolute inset-0 flex items-center justify-center z-20"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div className="text-center space-y-6">
+        <motion.div
+          className="w-24 h-24 mx-auto rounded-full border-4 border-primary/30 border-t-primary"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+        />
+        <div className="space-y-2">
+          <p className="text-foreground font-mono">REPAIRING REALITY...</p>
+          <div className="w-64 h-2 bg-muted rounded-full overflow-hidden mx-auto">
+            <motion.div
+              className="h-full bg-gradient-to-r from-primary to-cyan-400"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <p className="text-muted-foreground text-sm">{progress}%</p>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+export function BugDimension() {
+  const [phase, setPhase] = useState<"broken" | "fixing" | "fixed">("broken")
+  const [hasTriggered, setHasTriggered] = useState(false)
+
+  const handleEnterView = () => {
+    if (hasTriggered) return
+    setHasTriggered(true)
+    
+    // Auto-trigger fixing after 4 seconds in broken state
+    setTimeout(() => {
+      setPhase("fixing")
+    }, 4000)
+  }
+
+  const handleFixComplete = () => {
+    setPhase("fixed")
+  }
+
+  const handleReset = () => {
+    setPhase("broken")
+    setHasTriggered(false)
+    setTimeout(() => {
+      setHasTriggered(true)
+      setTimeout(() => setPhase("fixing"), 4000)
+    }, 100)
+  }
+
+  return (
+    <section id="bug-dimension" className="relative min-h-screen py-32 px-4 overflow-hidden">
+      {/* Background - changes based on phase */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{
+          backgroundColor:
+            phase === "broken"
+              ? "rgba(220, 38, 38, 0.05)"
+              : phase === "fixing"
+              ? "rgba(59, 130, 246, 0.03)"
+              : "rgba(34, 211, 238, 0.03)",
+        }}
+        transition={{ duration: 1 }}
+      />
+
+      {/* Scanlines for broken phase */}
+      <AnimatePresence>
+        {phase === "broken" && (
+          <motion.div
+            className="absolute inset-0 pointer-events-none scanline opacity-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.5 }}
+            exit={{ opacity: 0 }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Warning lights */}
+      <AnimatePresence>
+        {phase === "broken" && (
+          <>
+            <motion.div
+              className="absolute top-0 left-0 w-full h-1 bg-destructive"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              exit={{ scaleX: 0 }}
+              style={{ transformOrigin: "left" }}
+            />
+            <motion.div
+              className="absolute bottom-0 left-0 w-full h-1 bg-destructive"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              exit={{ scaleX: 0 }}
+              style={{ transformOrigin: "right" }}
+            />
+          </>
+        )}
+      </AnimatePresence>
+
+      <motion.div
+        className="relative z-10 max-w-6xl mx-auto"
+        onViewportEnter={handleEnterView}
+        viewport={{ once: false, margin: "-100px" }}
+      >
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <motion.div
+            className={`inline-block mb-6 px-4 py-2 rounded-full glass border ${
+              phase === "broken"
+                ? "border-destructive/50 bg-destructive/10"
+                : phase === "fixing"
+                ? "border-primary/30"
+                : "border-cyan-400/30 bg-cyan-400/10"
+            } transition-colors duration-500`}
+          >
+            <span
+              className={`text-sm font-mono ${
+                phase === "broken"
+                  ? "text-destructive"
+                  : phase === "fixing"
+                  ? "text-primary"
+                  : "text-cyan-400"
+              }`}
+            >
+              {phase === "broken"
+                ? "// ERROR: BUG_DIMENSION.tsx"
+                : phase === "fixing"
+                ? "// REPAIRING..."
+                : "// SYSTEM_RESTORED.tsx"}
+            </span>
+          </motion.div>
+
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
+            {phase === "broken" ? (
+              <>
+                <GlitchText>The Bug</GlitchText>{" "}
+                <span className="text-destructive">Dimension</span>
+              </>
+            ) : phase === "fixing" ? (
+              <span className="text-primary">Restoring Reality...</span>
+            ) : (
+              <>
+                <span className="text-cyan-400 text-glow-cyan">System</span>{" "}
+                <span className="text-foreground">Restored</span>
+              </>
+            )}
+          </h2>
+
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            {phase === "broken"
+              ? "Reality has been corrupted. Bugs have invaded the system."
+              : phase === "fixing"
+              ? "Applying patches and restoring system integrity..."
+              : "Order has been restored. All systems operational."}
+          </p>
+        </motion.div>
+
+        {/* Main content area */}
+        <div className="relative min-h-[400px] glass-strong rounded-3xl overflow-hidden border border-border/50">
+          <AnimatePresence mode="wait">
+            {phase === "broken" && (
+              <motion.div
+                key="broken"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <ConsoleOverlay errors={consoleErrors} />
+
+                {/* Fragmented UI elements */}
+                <div className="absolute inset-0 p-8">
+                  {brokenElements.map((el, i) => (
+                    <motion.div
+                      key={el.text}
+                      className="absolute glass px-4 py-2 rounded-lg border border-destructive/30"
+                      style={{
+                        top: `${20 + i * 25}%`,
+                        left: `${10 + i * 20}%`,
+                      }}
+                      animate={{
+                        x: [0, Math.random() * 10 - 5, 0],
+                        y: [0, Math.random() * 10 - 5, 0],
+                        rotate: [0, Math.random() * 5 - 2.5, 0],
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                      }}
+                    >
+                      <span className="font-mono text-destructive/80">
+                        {"<"}{el.broken}{" />"}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {phase === "fixing" && (
+              <FixingAnimation key="fixing" onComplete={handleFixComplete} />
+            )}
+
+            {phase === "fixed" && (
+              <motion.div
+                key="fixed"
+                className="absolute inset-0 flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+              >
+                <div className="text-center space-y-6">
+                  <motion.div
+                    className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-cyan-400 to-primary flex items-center justify-center"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", delay: 0.2 }}
+                  >
+                    <span className="text-3xl text-white">✓</span>
+                  </motion.div>
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-bold text-foreground">
+                      Reality Restored
+                    </h3>
+                    <p className="text-muted-foreground">
+                      All bugs have been eliminated from this dimension.
+                    </p>
+                  </div>
+                  <motion.button
+                    onClick={handleReset}
+                    className="px-6 py-3 rounded-xl glass border border-primary/30 text-primary font-medium hover:bg-primary/10 transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Experience Again
+                  </motion.button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.div>
+    </section>
+  )
+}

@@ -12,6 +12,7 @@ import { IdeaGenerator } from "@/components/idea-generator"
 import { TimeTunnel } from "@/components/time-tunnel"
 import { ProjectShowcase } from "@/components/project-showcase"
 import { FinalScene } from "@/components/final-scene"
+import { SoundControls } from "@/components/sound-controls"
 
 export default function FrontendMemoryPalace() {
   const [showIntro, setShowIntro] = useState(true)
@@ -54,6 +55,9 @@ export default function FrontendMemoryPalace() {
           <FinalScene onRestart={handleRestart} />
         </div>
       )}
+
+      {/* Sound controls */}
+      <SoundControls />
 
       {/* Noise overlay */}
       <div className="fixed inset-0 pointer-events-none z-50 noise opacity-50" />

@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
+import { useSound } from "@/lib/sounds"
 
 const consoleErrors = [
   "TypeError: Cannot read property 'undefined' of null",
@@ -129,19 +130,21 @@ function FixingAnimation({ onComplete }: { onComplete: () => void }) {
 export function BugDimension() {
   const [phase, setPhase] = useState<"broken" | "fixing" | "fixed">("broken")
   const [hasTriggered, setHasTriggered] = useState(false)
-
+  const { playGlitch, playBeep, playPing } = useSound()
+  
   const handleEnterView = () => {
-    if (hasTriggered) return
+  if (hasTriggered) return
+  playGlitch()
     setHasTriggered(true)
     
     // Auto-trigger fixing after 4 seconds in broken state
     setTimeout(() => {
-      setPhase("fixing")
+setPhase("fixing"); playBeep()
     }, 4000)
   }
 
   const handleFixComplete = () => {
-    setPhase("fixed")
+    setPhase("fixed"); playPing()
   }
 
   const handleReset = () => {

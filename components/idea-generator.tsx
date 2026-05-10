@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
+import { useSound } from "@/lib/sounds"
 
 const projectConcepts = [
   {
@@ -196,6 +197,7 @@ function ConceptCard({
 
 export function IdeaGenerator() {
   const [activeId, setActiveId] = useState<number | null>(1)
+  const { playHologram, playHover } = useSound()
 
   return (
     <section id="ideas" className="relative min-h-screen py-32 px-4">
@@ -264,7 +266,8 @@ export function IdeaGenerator() {
               key={concept.id}
               concept={concept}
               isActive={activeId === concept.id}
-              onClick={() => setActiveId(activeId === concept.id ? null : concept.id)}
+              onClick={() => { playHologram(); setActiveId(activeId === concept.id ? null : concept.id); }}
+                onMouseEnter={playHover}
             />
           ))}
         </motion.div>

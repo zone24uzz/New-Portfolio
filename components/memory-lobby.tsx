@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useRef, useState } from "react"
+import { useSound } from "@/lib/sounds"
 
 const codeSnippets = [
   { code: "const dream = await imagine()", lang: "js" },
@@ -22,6 +23,7 @@ const techStack = [
 export function MemoryLobby() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [hoveredTech, setHoveredTech] = useState<string | null>(null)
+  const { playHologram, playHover } = useSound()
 
   return (
     <section
@@ -130,7 +132,7 @@ export function MemoryLobby() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              onHoverStart={() => setHoveredTech(tech.name)}
+              onHoverStart={() => { setHoveredTech(tech.name); playHologram(); }}
               onHoverEnd={() => setHoveredTech(null)}
               className="relative group"
             >

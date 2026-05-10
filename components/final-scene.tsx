@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
+import { useSound } from "@/lib/sounds"
 
 const terminalLines = [
   { text: "> MEMORY_PALACE.shutdown()", delay: 0 },
@@ -54,16 +55,22 @@ function TypewriterText({ text, delay }: { text: string; delay: number }) {
 export function FinalScene({ onRestart }: { onRestart: () => void }) {
   const [showTerminal, setShowTerminal] = useState(false)
   const [showMessage, setShowMessage] = useState(false)
+  const { playClick, playHover, playPing, playWhoosh } = useSound()
 
   useEffect(() => {
     const timer1 = setTimeout(() => setShowTerminal(true), 500)
-    const timer2 = setTimeout(() => setShowMessage(true), 4500)
+    const timer2 = setTimeout(() => { setShowMessage(true); playPing(); }, 4500)
 
     return () => {
       clearTimeout(timer1)
       clearTimeout(timer2)
     }
-  }, [])
+  }, [playPing])
+
+  const handleRestart = () => {
+    playWhoosh()
+    onRestart()
+  }
 
   return (
     <section
@@ -169,7 +176,8 @@ export function FinalScene({ onRestart }: { onRestart: () => void }) {
             className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
           >
             <motion.button
-              onClick={onRestart}
+              onClick={handleRestart}
+              onMouseEnter={playHover}
               className="group relative px-8 py-4 rounded-2xl overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -183,6 +191,8 @@ export function FinalScene({ onRestart }: { onRestart: () => void }) {
 
             <motion.a
               href="#lobby"
+              onMouseEnter={playHover}
+              onClick={playClick}
               className="px-8 py-4 rounded-2xl glass border border-primary/30 text-primary font-medium hover:bg-primary/10 transition-colors flex items-center justify-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -203,6 +213,8 @@ export function FinalScene({ onRestart }: { onRestart: () => void }) {
               <motion.a
                 key={platform}
                 href="#"
+                onMouseEnter={playHover}
+                onClick={playClick}
                 className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
                 whileHover={{ y: -2 }}
               >

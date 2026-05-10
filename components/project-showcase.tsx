@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { useState, useRef } from "react"
+import { useSound } from "@/lib/sounds"
 
 const projects = [
   {
@@ -88,6 +89,7 @@ function MagneticButton({
   const ref = useRef<HTMLAnchorElement>(null)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
+  const { playHover, playProjectSelect } = useSound()
   
   const springX = useSpring(x, { stiffness: 300, damping: 20 })
   const springY = useSpring(y, { stiffness: 300, damping: 20 })
@@ -115,7 +117,9 @@ function MagneticButton({
       className={className}
       style={{ x: springX, y: springY }}
       onMouseMove={handleMouseMove}
+      onMouseEnter={playHover}
       onMouseLeave={handleMouseLeave}
+      onClick={playProjectSelect}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
@@ -138,6 +142,7 @@ function ProjectCard({
   const cardRef = useRef<HTMLDivElement>(null)
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
+  const { playCardHover } = useSound()
 
   const rotateX = useTransform(mouseY, [-150, 150], [8, -8])
   const rotateY = useTransform(mouseX, [-150, 150], [-8, 8])
@@ -165,7 +170,7 @@ function ProjectCard({
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => onHover(project.id)}
+      onMouseEnter={() => { onHover(project.id); playCardHover(); }}
       onMouseLeave={handleMouseLeave}
       style={{
         rotateX: isHovered ? rotateX : 0,

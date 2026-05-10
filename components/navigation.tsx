@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
+import { useSound } from "@/lib/sounds"
 
 const navItems = [
   { id: "lobby", label: "Lobby", icon: "◈" },
@@ -17,6 +18,7 @@ export function Navigation() {
   const [activeSection, setActiveSection] = useState("lobby")
   const [isExpanded, setIsExpanded] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const { playNavClick, playHover, playSwoosh } = useSound()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,11 +44,17 @@ export function Navigation() {
   }, [])
 
   const scrollToSection = (id: string) => {
+    playNavClick()
     const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
     setIsExpanded(false)
+  }
+
+  const handleToggleExpand = () => {
+    playSwoosh()
+    setIsExpanded(!isExpanded)
   }
 
   return (
@@ -70,6 +78,7 @@ export function Navigation() {
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
+                onMouseEnter={playHover}
                 className={`group relative w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
                   activeSection === item.id
                     ? "bg-primary text-primary-foreground"
@@ -141,7 +150,7 @@ export function Navigation() {
 
           {/* Toggle bar */}
           <button
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={handleToggleExpand}
             className="w-full p-4 flex items-center justify-between"
           >
             <div className="flex items-center gap-3">

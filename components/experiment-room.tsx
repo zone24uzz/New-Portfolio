@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { useRef, useState } from "react"
+import { useSound } from "@/lib/sounds"
 
 const experiments = [
   {
@@ -29,6 +30,7 @@ const experiments = [
 function LiquidButton({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLButtonElement>(null)
   const [isHovered, setIsHovered] = useState(false)
+  const { playHover, playClick } = useSound()
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)

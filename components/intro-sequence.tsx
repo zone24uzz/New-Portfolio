@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
+import { useSound } from "@/lib/sounds"
 
 interface IntroSequenceProps {
   onComplete: () => void
@@ -10,15 +11,16 @@ interface IntroSequenceProps {
 export function IntroSequence({ onComplete }: IntroSequenceProps) {
   const [stage, setStage] = useState(0)
   const [showSkip, setShowSkip] = useState(false)
+  const { playBeep, playPowerUp, playHologram, playSwoosh, playClick } = useSound()
 
   useEffect(() => {
     const skipTimer = setTimeout(() => setShowSkip(true), 1000)
     
     const timers = [
-      setTimeout(() => setStage(1), 500),
-      setTimeout(() => setStage(2), 2500),
-      setTimeout(() => setStage(3), 4500),
-      setTimeout(() => setStage(4), 6000),
+      setTimeout(() => { setStage(1); playBeep(); }, 500),
+      setTimeout(() => { setStage(2); playPowerUp(); }, 2500),
+      setTimeout(() => { setStage(3); playHologram(); }, 4500),
+      setTimeout(() => { setStage(4); playSwoosh(); }, 6000),
       setTimeout(() => onComplete(), 7500),
     ]
 
@@ -26,9 +28,10 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
       clearTimeout(skipTimer)
       timers.forEach(clearTimeout)
     }
-  }, [onComplete])
+  }, [onComplete, playBeep, playPowerUp, playHologram, playSwoosh])
 
   const handleSkip = () => {
+    playClick()
     onComplete()
   }
 

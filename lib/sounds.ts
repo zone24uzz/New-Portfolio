@@ -172,7 +172,6 @@ class SoundSystem {
     const osc2 = this.audioContext.createOscillator();
     const osc3 = this.audioContext.createOscillator();
     const gain = this.audioContext.createGain();
-    const reverb = this.audioContext.createConvolver();
     
     osc1.connect(gain);
     osc2.connect(gain);

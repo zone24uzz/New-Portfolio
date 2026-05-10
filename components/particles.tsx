@@ -41,7 +41,8 @@ export function ParticleField() {
       "rgba(255, 255, 255, 0.3)",
     ]
 
-    for (let i = 0; i < 100; i++) {
+    const COUNT = 60
+    for (let i = 0; i < COUNT; i++) {
       particlesRef.current.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -93,21 +94,24 @@ export function ParticleField() {
         ctx.fillStyle = particle.color
         ctx.fill()
 
-        // Draw connections
-        particlesRef.current.slice(i + 1).forEach((other) => {
-          const dx = other.x - particle.x
-          const dy = other.y - particle.y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-
-          if (dist < 120) {
-            ctx.beginPath()
-            ctx.moveTo(particle.x, particle.y)
-            ctx.lineTo(other.x, other.y)
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - dist / 120)})`
-            ctx.lineWidth = 0.5
-            ctx.stroke()
+        // Draw connections (only check nearby particles, skip every other for perf)
+        if (i % 2 === 0) {
+          for (let j = i + 1; j < particlesRef.current.length; j += 2) {
+            const other = particlesRef.current[j]
+            const dx = other.x - particle.x
+            const dy = other.y - particle.y
+            if (Math.abs(dx) > 120 || Math.abs(dy) > 120) continue
+            const dist = Math.sqrt(dx * dx + dy * dy)
+            if (dist < 120) {
+              ctx.beginPath()
+              ctx.moveTo(particle.x, particle.y)
+              ctx.lineTo(other.x, other.y)
+              ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - dist / 120)})`
+              ctx.lineWidth = 0.5
+              ctx.stroke()
+            }
           }
-        })
+        }
       })
 
       animationRef.current = requestAnimationFrame(animate)

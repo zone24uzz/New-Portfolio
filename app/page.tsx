@@ -1,18 +1,19 @@
 "use client"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, lazy, Suspense } from "react"
 import { AnimatePresence } from "framer-motion"
 import { IntroSequence } from "@/components/intro-sequence"
 import { ParticleField } from "@/components/particles"
 import { Navigation } from "@/components/navigation"
-import { MemoryLobby } from "@/components/memory-lobby"
-import { ExperimentRoom } from "@/components/experiment-room"
-import { BugDimension } from "@/components/bug-dimension"
-import { IdeaGenerator } from "@/components/idea-generator"
-import { TimeTunnel } from "@/components/time-tunnel"
-import { ProjectShowcase } from "@/components/project-showcase"
-import { FinalScene } from "@/components/final-scene"
 import { SoundControls } from "@/components/sound-controls"
+
+const MemoryLobby = lazy(() => import("@/components/memory-lobby").then(m => ({ default: m.MemoryLobby })))
+const ExperimentRoom = lazy(() => import("@/components/experiment-room").then(m => ({ default: m.ExperimentRoom })))
+const BugDimension = lazy(() => import("@/components/bug-dimension").then(m => ({ default: m.BugDimension })))
+const IdeaGenerator = lazy(() => import("@/components/idea-generator").then(m => ({ default: m.IdeaGenerator })))
+const TimeTunnel = lazy(() => import("@/components/time-tunnel").then(m => ({ default: m.TimeTunnel })))
+const ProjectShowcase = lazy(() => import("@/components/project-showcase").then(m => ({ default: m.ProjectShowcase })))
+const FinalScene = lazy(() => import("@/components/final-scene").then(m => ({ default: m.FinalScene })))
 
 export default function FrontendMemoryPalace() {
   const [showIntro, setShowIntro] = useState(true)
@@ -46,13 +47,15 @@ export default function FrontendMemoryPalace() {
       {/* Main content sections */}
       {!showIntro && (
         <div className="relative z-10">
-          <MemoryLobby />
-          <ExperimentRoom />
-          <BugDimension />
-          <IdeaGenerator />
-          <TimeTunnel />
-          <ProjectShowcase />
-          <FinalScene onRestart={handleRestart} />
+          <Suspense fallback={null}>
+            <MemoryLobby />
+            <ExperimentRoom />
+            <BugDimension />
+            <IdeaGenerator />
+            <TimeTunnel />
+            <ProjectShowcase />
+            <FinalScene onRestart={handleRestart} />
+          </Suspense>
         </div>
       )}
 

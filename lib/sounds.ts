@@ -433,22 +433,35 @@ export function useSound() {
     return newMuted;
   }, []);
 
+  const playClick = useCallback(() => soundSystem.playClick(), []);
+  const playHover = useCallback(() => soundSystem.playHover(), []);
+  const playSwoosh = useCallback(() => soundSystem.playSwoosh(), []);
+  const playBeep = useCallback(() => soundSystem.playBeep(), []);
+  const playHologram = useCallback(() => soundSystem.playHologram(), []);
+  const playCardHover = useCallback(() => soundSystem.playCardHover(), []);
+  const playNavClick = useCallback(() => soundSystem.playNavClick(), []);
+  const playProjectSelect = useCallback(() => soundSystem.playProjectSelect(), []);
+  const playGlitch = useCallback(() => soundSystem.playGlitch(), []);
+  const playPowerUp = useCallback(() => soundSystem.playPowerUp(), []);
+  const playPing = useCallback(() => soundSystem.playPing(), []);
+  const playWhoosh = useCallback(() => soundSystem.playWhoosh(), []);
+
   return {
     volume,
     muted,
     setVolume,
     toggleMute,
-    playClick: () => soundSystem.playClick(),
-    playHover: () => soundSystem.playHover(),
-    playSwoosh: () => soundSystem.playSwoosh(),
-    playBeep: () => soundSystem.playBeep(),
-    playHologram: () => soundSystem.playHologram(),
-    playCardHover: () => soundSystem.playCardHover(),
-    playNavClick: () => soundSystem.playNavClick(),
-    playProjectSelect: () => soundSystem.playProjectSelect(),
-    playGlitch: () => soundSystem.playGlitch(),
-    playPowerUp: () => soundSystem.playPowerUp(),
-    playPing: () => soundSystem.playPing(),
-    playWhoosh: () => soundSystem.playWhoosh(),
+    playClick,
+    playHover,
+    playSwoosh,
+    playBeep,
+    playHologram,
+    playCardHover,
+    playNavClick,
+    playProjectSelect,
+    playGlitch,
+    playPowerUp,
+    playPing,
+    playWhoosh,
   };
 }

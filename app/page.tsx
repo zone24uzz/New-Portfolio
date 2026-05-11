@@ -6,6 +6,7 @@ import { IntroSequence } from "@/components/intro-sequence"
 import { ParticleField } from "@/components/particles"
 import { Navigation } from "@/components/navigation"
 import { SoundControls } from "@/components/sound-controls"
+import { CyberDrawer } from "@/components/cyber-drawer"
 
 const MemoryLobby = lazy(() => import("@/components/memory-lobby").then(m => ({ default: m.MemoryLobby })))
 const ExperimentRoom = lazy(() => import("@/components/experiment-room").then(m => ({ default: m.ExperimentRoom })))
@@ -41,6 +42,7 @@ export default function FrontendMemoryPalace() {
         <>
           <ParticleField />
           <Navigation />
+          <CyberDrawer />
         </>
       )}
 

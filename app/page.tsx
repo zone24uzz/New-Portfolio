@@ -31,7 +31,7 @@ export default function FrontendMemoryPalace() {
   }, [])
 
   return (
-    <main key={key} className="relative min-h-screen bg-background overflow-x-hidden">
+    <main key={key} className="relative min-h-screen overflow-x-hidden">
       {/* Intro sequence */}
       <AnimatePresence>
         {showIntro && <IntroSequence onComplete={handleIntroComplete} />}

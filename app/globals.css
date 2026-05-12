@@ -3,71 +3,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
-  /* Deep cinematic dark theme - Blade Runner meets Interstellar */
-  --background: oklch(0.08 0.01 260);
-  --foreground: oklch(0.95 0.01 260);
-  --card: oklch(0.12 0.015 260);
-  --card-foreground: oklch(0.95 0.01 260);
-  --popover: oklch(0.1 0.01 260);
-  --popover-foreground: oklch(0.95 0.01 260);
-  
-  /* Electric blue primary - neon glow */
-  --primary: oklch(0.7 0.18 240);
-  --primary-foreground: oklch(0.98 0 0);
-  
-  /* Graphite secondary */
-  --secondary: oklch(0.18 0.01 260);
-  --secondary-foreground: oklch(0.85 0.02 260);
-  
-  /* Muted graphite */
-  --muted: oklch(0.15 0.01 260);
-  --muted-foreground: oklch(0.55 0.02 260);
-  
-  /* Violet accent - soft glow */
-  --accent: oklch(0.6 0.2 290);
-  --accent-foreground: oklch(0.98 0 0);
-  
-  /* Cyan highlight */
-  --cyan: oklch(0.75 0.15 200);
-  --cyan-foreground: oklch(0.1 0.01 200);
-  
-  /* Warning/Bug dimension red */
-  --destructive: oklch(0.6 0.25 25);
-  --destructive-foreground: oklch(0.98 0 0);
-  
-  --border: oklch(0.2 0.02 260);
-  --input: oklch(0.15 0.01 260);
-  --ring: oklch(0.7 0.18 240);
-  
-  /* Chart colors - neon palette */
-  --chart-1: oklch(0.7 0.18 240);
-  --chart-2: oklch(0.6 0.2 290);
-  --chart-3: oklch(0.75 0.15 200);
-  --chart-4: oklch(0.65 0.15 170);
-  --chart-5: oklch(0.7 0.2 320);
-  
-  --radius: 0.75rem;
-  
-  /* Sidebar */
-  --sidebar: oklch(0.1 0.01 260);
-  --sidebar-foreground: oklch(0.95 0.01 260);
-  --sidebar-primary: oklch(0.7 0.18 240);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.15 0.01 260);
-  --sidebar-accent-foreground: oklch(0.95 0.01 260);
-  --sidebar-border: oklch(0.2 0.02 260);
-  --sidebar-ring: oklch(0.7 0.18 240);
-
-  /* Custom cinematic colors */
-  --neon-blue: oklch(0.7 0.22 240);
-  --neon-violet: oklch(0.6 0.25 290);
-  --neon-cyan: oklch(0.8 0.15 200);
-  --deep-black: oklch(0.05 0.01 260);
-  --graphite: oklch(0.15 0.01 260);
-  --soft-white: oklch(0.95 0.01 260);
-}
-
+/* ─── DARK MODE (default) ──────────────────────────────────────────────────── */
+:root,
 .dark {
   --background: oklch(0.08 0.01 260);
   --foreground: oklch(0.95 0.01 260);
@@ -83,6 +20,8 @@
   --muted-foreground: oklch(0.55 0.02 260);
   --accent: oklch(0.6 0.2 290);
   --accent-foreground: oklch(0.98 0 0);
+  --cyan: oklch(0.75 0.15 200);
+  --cyan-foreground: oklch(0.1 0.01 200);
   --destructive: oklch(0.6 0.25 25);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(0.2 0.02 260);
@@ -93,6 +32,7 @@
   --chart-3: oklch(0.75 0.15 200);
   --chart-4: oklch(0.65 0.15 170);
   --chart-5: oklch(0.7 0.2 320);
+  --radius: 0.75rem;
   --sidebar: oklch(0.1 0.01 260);
   --sidebar-foreground: oklch(0.95 0.01 260);
   --sidebar-primary: oklch(0.7 0.18 240);
@@ -101,6 +41,65 @@
   --sidebar-accent-foreground: oklch(0.95 0.01 260);
   --sidebar-border: oklch(0.2 0.02 260);
   --sidebar-ring: oklch(0.7 0.18 240);
+  --neon-blue: oklch(0.7 0.22 240);
+  --neon-violet: oklch(0.6 0.25 290);
+  --neon-cyan: oklch(0.8 0.15 200);
+  --deep-black: oklch(0.05 0.01 260);
+  --graphite: oklch(0.15 0.01 260);
+  --soft-white: oklch(0.95 0.01 260);
+  /* Glass dark */
+  --glass-bg: rgba(15, 15, 25, 0.6);
+  --glass-border: rgba(100, 150, 255, 0.12);
+  --glass-strong-bg: rgba(15, 15, 25, 0.85);
+}
+
+/* ─── LIGHT MODE ───────────────────────────────────────────────────────────── */
+.light {
+  --background: oklch(0.98 0.005 260);
+  --foreground: oklch(0.12 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.02 260);
+  --primary: oklch(0.55 0.2 260);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.94 0.01 260);
+  --secondary-foreground: oklch(0.2 0.02 260);
+  --muted: oklch(0.96 0.005 260);
+  --muted-foreground: oklch(0.5 0.02 260);
+  --accent: oklch(0.6 0.18 290);
+  --accent-foreground: oklch(0.98 0 0);
+  --cyan: oklch(0.6 0.15 200);
+  --cyan-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.88 0.01 260);
+  --input: oklch(0.94 0.01 260);
+  --ring: oklch(0.55 0.2 260);
+  --chart-1: oklch(0.55 0.2 260);
+  --chart-2: oklch(0.6 0.18 290);
+  --chart-3: oklch(0.55 0.15 200);
+  --chart-4: oklch(0.55 0.15 170);
+  --chart-5: oklch(0.6 0.18 320);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.97 0.005 260);
+  --sidebar-foreground: oklch(0.12 0.02 260);
+  --sidebar-primary: oklch(0.55 0.2 260);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.94 0.01 260);
+  --sidebar-accent-foreground: oklch(0.12 0.02 260);
+  --sidebar-border: oklch(0.88 0.01 260);
+  --sidebar-ring: oklch(0.55 0.2 260);
+  --neon-blue: oklch(0.55 0.2 240);
+  --neon-violet: oklch(0.55 0.2 290);
+  --neon-cyan: oklch(0.55 0.15 200);
+  --deep-black: oklch(0.12 0.02 260);
+  --graphite: oklch(0.88 0.01 260);
+  --soft-white: oklch(0.98 0.005 260);
+  /* Glass light */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(99, 102, 241, 0.15);
+  --glass-strong-bg: rgba(255, 255, 255, 0.88);
 }
 
 @theme inline {
@@ -178,17 +177,41 @@
   }
 }
 
-/* Glassmorphism utility classes */
+/* ─── Performance optimizations ───────────────────────────────────────────── */
+
+/* Убираем transition на анимируемых canvas/WebGL элементах */
+canvas,
+video {
+  transition: none !important;
+}
+
+/* Аппаратное ускорение для фиксированных элементов */
+.fixed {
+  will-change: transform;
+}
+
+/* Оптимизация для секций вне viewport */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Theme transition — только нужные свойства, не все */
+*, *::before, *::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Glassmorphism utility classes — theme-aware */
 .glass {
-  background: rgba(15, 15, 25, 0.6);
+  background: var(--glass-bg);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(100, 150, 255, 0.1);
+  border: 1px solid var(--glass-border);
 }
 
 .glass-strong {
-  background: rgba(15, 15, 25, 0.85);
+  background: var(--glass-strong-bg);
   backdrop-filter: blur(30px);
-  border: 1px solid rgba(100, 150, 255, 0.15);
+  border: 1px solid var(--glass-border);
 }
 
 /* Neon glow effects */
@@ -354,4 +377,33 @@ html {
 ::selection {
   background: rgba(59, 130, 246, 0.3);
   color: white;
+}
+
+/* Light mode overrides */
+.light ::selection {
+  background: rgba(99, 102, 241, 0.25);
+  color: #1e1b4b;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #f0f4ff;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.4);
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.7);
+}
+
+/* Light mode neon glow — softer */
+.light .neon-glow-blue {
+  box-shadow: 0 0 15px rgba(99,102,241,0.2), 0 0 30px rgba(99,102,241,0.1);
+}
+.light .neon-glow-violet {
+  box-shadow: 0 0 15px rgba(139,92,246,0.2), 0 0 30px rgba(139,92,246,0.1);
+}
+.light .text-glow-blue {
+  text-shadow: 0 0 8px rgba(99,102,241,0.4), 0 0 16px rgba(99,102,241,0.2);
 }

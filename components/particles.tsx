@@ -1,120 +1,108 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { motion } from "framer-motion"
-
-interface Particle {
-  x: number
-  y: number
-  vx: number
-  vy: number
-  size: number
-  opacity: number
-  color: string
-}
 
 export function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const particlesRef = useRef<Particle[]>([])
-  const mouseRef = useRef({ x: 0, y: 0 })
-  const animationRef = useRef<number>()
+  const rafRef = useRef<number>()
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-
     const ctx = canvas.getContext("2d")
     if (!ctx) return
+
+    // Отключаем на мобильных — главный источник lag
+    const isMobile = window.innerWidth < 768
+    if (isMobile) return
+
+    interface Particle {
+      x: number; y: number; vx: number; vy: number
+      size: number; color: string
+    }
 
     const resize = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
     }
     resize()
-    window.addEventListener("resize", resize)
+    window.addEventListener("resize", resize, { passive: true })
 
-    // Initialize particles
     const colors = [
-      "rgba(59, 130, 246, 0.6)",
-      "rgba(139, 92, 246, 0.5)",
-      "rgba(34, 211, 238, 0.4)",
-      "rgba(255, 255, 255, 0.3)",
+      "rgba(59,130,246,0.5)",
+      "rgba(139,92,246,0.4)",
+      "rgba(34,211,238,0.35)",
     ]
 
-    const COUNT = 60
-    for (let i = 0; i < COUNT; i++) {
-      particlesRef.current.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.5 + 0.2,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      })
-    }
+    // Уменьшаем количество частиц с 60 до 35
+    const COUNT = 35
+    const particles: Particle[] = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      size: Math.random() * 1.5 + 0.5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    }))
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY }
-    }
-    window.addEventListener("mousemove", handleMouseMove)
+    const mouse = { x: -9999, y: -9999 }
+    const handleMouseMove = (e: MouseEvent) => { mouse.x = e.clientX; mouse.y = e.clientY }
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
 
+    // Throttle: рисуем каждый второй кадр
+    let frame = 0
     const animate = () => {
+      rafRef.current = requestAnimationFrame(animate)
+      frame++
+      if (frame % 2 !== 0) return // 30fps вместо 60fps
+
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      particlesRef.current.forEach((particle, i) => {
-        // Mouse interaction
-        const dx = mouseRef.current.x - particle.x
-        const dy = mouseRef.current.y - particle.y
-        const dist = Math.sqrt(dx * dx + dy * dy)
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i]
 
-        if (dist < 150) {
-          const force = (150 - dist) / 150
-          particle.vx -= (dx / dist) * force * 0.02
-          particle.vy -= (dy / dist) * force * 0.02
+        // Mouse repulsion
+        const dx = mouse.x - p.x
+        const dy = mouse.y - p.y
+        if (Math.abs(dx) < 150 && Math.abs(dy) < 150) {
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          if (dist < 150 && dist > 0) {
+            const force = (150 - dist) / 150
+            p.vx -= (dx / dist) * force * 0.015
+            p.vy -= (dy / dist) * force * 0.015
+          }
         }
 
-        // Update position
-        particle.x += particle.vx
-        particle.y += particle.vy
+        p.x += p.vx; p.y += p.vy
+        p.vx *= 0.99; p.vy *= 0.99
+        if (p.x < 0) p.x = canvas.width
+        if (p.x > canvas.width) p.x = 0
+        if (p.y < 0) p.y = canvas.height
+        if (p.y > canvas.height) p.y = 0
 
-        // Boundaries
-        if (particle.x < 0) particle.x = canvas.width
-        if (particle.x > canvas.width) particle.x = 0
-        if (particle.y < 0) particle.y = canvas.height
-        if (particle.y > canvas.height) particle.y = 0
-
-        // Damping
-        particle.vx *= 0.99
-        particle.vy *= 0.99
-
-        // Draw particle
         ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = particle.color
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
+        ctx.fillStyle = p.color
         ctx.fill()
 
-        // Draw connections (only check nearby particles, skip every other for perf)
-        if (i % 2 === 0) {
-          for (let j = i + 1; j < particlesRef.current.length; j += 2) {
-            const other = particlesRef.current[j]
-            const dx = other.x - particle.x
-            const dy = other.y - particle.y
-            if (Math.abs(dx) > 120 || Math.abs(dy) > 120) continue
-            const dist = Math.sqrt(dx * dx + dy * dy)
-            if (dist < 120) {
+        // Соединения только для каждой 3-й частицы
+        if (i % 3 === 0) {
+          for (let j = i + 1; j < particles.length; j += 3) {
+            const o = particles[j]
+            const ddx = o.x - p.x; const ddy = o.y - p.y
+            if (Math.abs(ddx) > 100 || Math.abs(ddy) > 100) continue
+            const d = Math.sqrt(ddx * ddx + ddy * ddy)
+            if (d < 100) {
               ctx.beginPath()
-              ctx.moveTo(particle.x, particle.y)
-              ctx.lineTo(other.x, other.y)
-              ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - dist / 120)})`
+              ctx.moveTo(p.x, p.y)
+              ctx.lineTo(o.x, o.y)
+              ctx.strokeStyle = `rgba(59,130,246,${0.08 * (1 - d / 100)})`
               ctx.lineWidth = 0.5
               ctx.stroke()
             }
           }
         }
-      })
-
-      animationRef.current = requestAnimationFrame(animate)
+      }
     }
 
     animate()
@@ -122,54 +110,16 @@ export function ParticleField() {
     return () => {
       window.removeEventListener("resize", resize)
       window.removeEventListener("mousemove", handleMouseMove)
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
   }, [])
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.7 }}
+      className="fixed inset-0 pointer-events-none z-0 hidden md:block"
+      style={{ opacity: 0.6 }}
+      aria-hidden="true"
     />
-  )
-}
-
-export function FloatingElements() {
-  const elements = [
-    { icon: "⚛️", delay: 0, x: "10%", y: "20%" },
-    { icon: "📦", delay: 0.5, x: "85%", y: "15%" },
-    { icon: "🔮", delay: 1, x: "75%", y: "70%" },
-    { icon: "⚡", delay: 1.5, x: "15%", y: "75%" },
-    { icon: "🎯", delay: 2, x: "50%", y: "85%" },
-  ]
-
-  return (
-    <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
-      {elements.map((el, i) => (
-        <motion.div
-          key={i}
-          className="absolute text-4xl opacity-20"
-          style={{ left: el.x, top: el.y }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{
-            opacity: [0.1, 0.3, 0.1],
-            scale: [0.8, 1.2, 0.8],
-            y: [0, -30, 0],
-            rotate: [0, 10, -10, 0],
-          }}
-          transition={{
-            duration: 8,
-            delay: el.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          {el.icon}
-        </motion.div>
-      ))}
-    </div>
   )
 }

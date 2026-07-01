@@ -3,6 +3,8 @@
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { useState, useRef } from "react"
 import { useSound } from "@/lib/sounds"
+import { useI18n } from "@/lib/i18n/i18n-context"
+import { useTheme } from "@/hooks/use-theme"
 
 const projects = [
   {
@@ -139,6 +141,8 @@ function ProjectCard({
   isHovered: boolean
   onHover: (id: number | null) => void
 }) {
+  const { t } = useI18n()
+  const { isDark } = useTheme()
   const cardRef = useRef<HTMLDivElement>(null)
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -198,13 +202,17 @@ function ProjectCard({
         }}
       />
 
-      {/* Card container */}
+      {/* Card container - theme aware */}
       <div 
         className="relative rounded-3xl overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, rgba(20, 20, 35, 0.9) 0%, rgba(10, 10, 20, 0.95) 100%)",
+          background: isDark
+            ? "linear-gradient(135deg, rgba(20, 20, 35, 0.9) 0%, rgba(10, 10, 20, 0.95) 100%)"
+            : "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 255, 0.95) 100%)",
           backdropFilter: "blur(20px)",
-          border: "1px solid rgba(255, 255, 255, 0.08)",
+          border: isDark
+            ? "1px solid rgba(255, 255, 255, 0.08)"
+            : "1px solid rgba(245, 158, 11, 0.15)",
         }}
       >
         {/* Animated gradient overlay */}
@@ -329,7 +337,7 @@ function ProjectCard({
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
-                Live Preview
+                {t("projects.livePreview")}
               </span>
               <motion.div
                 className="absolute inset-0 bg-white/20"
@@ -346,7 +354,7 @@ function ProjectCard({
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
-              Code
+              {t("projects.code")}
             </MagneticButton>
           </div>
         </div>
@@ -378,7 +386,9 @@ function ProjectCard({
 }
 
 export function ProjectShowcase() {
+  const { t } = useI18n()
   const [hoveredId, setHoveredId] = useState<number | null>(null)
+  const { isDark } = useTheme()
 
   return (
     <section id="projects" className="relative min-h-screen py-32 px-4 overflow-hidden">
@@ -449,7 +459,7 @@ export function ProjectShowcase() {
               transition={{ duration: 2, repeat: Infinity }}
             />
             <span className="text-sm font-mono text-primary tracking-wider">
-              DIGITAL_ARTIFACTS.render()
+              {t("projects.badge")}
             </span>
           </motion.div>
 
@@ -461,10 +471,10 @@ export function ProjectShowcase() {
             transition={{ delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <span className="text-foreground">Featured</span>{" "}
+            <span className="text-foreground">{t("projects.title")}</span>{" "}
             <span className="relative">
               <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-                Projects
+                {t("projects.titleHighlight")}
               </span>
               <motion.span
                 className="absolute -inset-2 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 blur-2xl -z-10"
@@ -482,9 +492,9 @@ export function ProjectShowcase() {
             transition={{ delay: 0.5 }}
             viewport={{ once: true }}
           >
-            Each project is a portal to another dimension. Hover to explore, click to enter.
+            {t("projects.description")}
             <span className="block mt-2 text-sm text-muted-foreground/60 font-mono">
-              // {projects.length} artifacts loaded
+              {t("projects.artifacts", { count: projects.length })}
             </span>
           </motion.p>
         </motion.div>
@@ -511,7 +521,7 @@ export function ProjectShowcase() {
           className="text-center mt-20"
         >
           <p className="text-muted-foreground mb-6 font-mono text-sm">
-            More artifacts are being forged in the digital void...
+            {t("projects.moreText")}
           </p>
           <motion.div
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-dashed border-primary/30 text-primary/60"
@@ -526,7 +536,7 @@ export function ProjectShowcase() {
             >
               {"<"}
             </motion.span>
-            <span className="font-mono text-sm">coming_soon</span>
+            <span className="font-mono text-sm">{t("projects.comingSoon")}</span>
             <motion.span
               animate={{ opacity: [1, 0.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }}

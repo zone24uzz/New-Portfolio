@@ -3,8 +3,10 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { Sun, Moon } from "lucide-react"
 import { useTheme } from "@/hooks/use-theme"
+import { useI18n } from "@/lib/i18n/i18n-context"
 
 export function ThemeToggle() {
+  const { t } = useI18n()
   const { isDark, toggle, mounted } = useTheme()
 
   if (!mounted) return null
@@ -12,7 +14,7 @@ export function ThemeToggle() {
   return (
     <motion.button
       onClick={toggle}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={isDark ? t("theme.switchToLight") : t("theme.switchToDark")}
       className="fixed top-5 right-5 z-50 flex items-center gap-2 px-3 py-2 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-violet-400 select-none"
       style={{
         background: isDark
@@ -81,7 +83,7 @@ export function ThemeToggle() {
           className="text-xs font-mono hidden sm:block"
           style={{ color: isDark ? "rgba(139,92,246,0.8)" : "rgba(99,102,241,0.8)" }}
         >
-          {isDark ? "DARK" : "LIGHT"}
+          {isDark ? t("theme.dark") : t("theme.light")}
         </motion.span>
       </AnimatePresence>
     </motion.button>

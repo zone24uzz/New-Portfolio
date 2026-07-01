@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useRef, useState } from "react"
 import { useSound } from "@/lib/sounds"
+import { useI18n } from "@/lib/i18n/i18n-context"
 
 const codeSnippets = [
   { code: "const dream = await imagine()", lang: "js" },
@@ -21,6 +22,7 @@ const techStack = [
 ]
 
 export function MemoryLobby() {
+  const { t } = useI18n()
   const containerRef = useRef<HTMLDivElement>(null)
   const [hoveredTech, setHoveredTech] = useState<string | null>(null)
   const { playHologram, playHover } = useSound()
@@ -69,19 +71,18 @@ export function MemoryLobby() {
             viewport={{ once: true }}
           >
             <span className="text-sm font-mono text-primary">
-              {"// MEMORY_LOBBY.tsx"}
+              {t("lobby.badge")}
             </span>
           </motion.div>
 
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6">
-            <span className="text-foreground">Welcome to the</span>
+            <span className="text-foreground">{t("lobby.title")}</span>
             <br />
-            <span className="text-primary text-glow-blue">Memory Palace</span>
+            <span className="text-primary text-glow-gold">{t("lobby.titleHighlight")}</span>
           </h2>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A space where code becomes art, and ideas transform into digital
-            experiences. Explore the fragments of a developer&apos;s consciousness.
+            {t("lobby.description")}
           </p>
         </motion.div>
 
@@ -171,7 +172,7 @@ export function MemoryLobby() {
           transition={{ duration: 2, repeat: Infinity }}
         >
           <div className="flex flex-col items-center gap-2 text-muted-foreground">
-            <span className="text-xs font-mono tracking-widest">EXPLORE</span>
+            <span className="text-xs font-mono tracking-widest">{t("lobby.explore")}</span>
             <motion.div
               className="w-6 h-10 rounded-full border-2 border-primary/30 flex justify-center pt-2"
             >

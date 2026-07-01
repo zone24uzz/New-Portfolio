@@ -3,13 +3,14 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { useSound } from "@/lib/sounds"
+import { useI18n } from "@/lib/i18n/i18n-context"
 
-const consoleErrors = [
-  "TypeError: Cannot read property 'undefined' of null",
-  "Uncaught ReferenceError: reality is not defined",
-  "Warning: Memory leak detected in component <Brain />",
-  "Error: Maximum update depth exceeded",
-  "SyntaxError: Unexpected token 'dreams'",
+const consoleErrorKeys = [
+  "misc.errors.typeError",
+  "misc.errors.refError",
+  "misc.errors.memoryLeak",
+  "misc.errors.maxDepth",
+  "misc.errors.syntaxError",
 ]
 
 const brokenElements = [
@@ -41,7 +42,7 @@ function GlitchText({ children }: { children: string }) {
             {children}
           </span>
           <span
-            className="absolute inset-0 text-cyan-400"
+            className="absolute inset-0 text-amber-400"
             style={{ clipPath: "inset(50% 0 20% 0)", transform: "translateX(2px)" }}
           >
             {children}
@@ -53,6 +54,7 @@ function GlitchText({ children }: { children: string }) {
 }
 
 function ConsoleOverlay({ errors }: { errors: string[] }) {
+  const { t } = useI18n()
   return (
     <motion.div
       className="absolute inset-4 md:inset-8 glass-strong rounded-xl border border-destructive/30 overflow-hidden font-mono text-sm"
@@ -62,7 +64,7 @@ function ConsoleOverlay({ errors }: { errors: string[] }) {
     >
       <div className="flex items-center gap-2 px-4 py-3 border-b border-destructive/20 bg-destructive/10">
         <div className="w-3 h-3 rounded-full bg-destructive" />
-        <span className="text-destructive">Console - Reality Corruption Detected</span>
+        <span className="text-destructive">{t("bug.console")}</span>
       </div>
       <div className="p-4 space-y-2 max-h-[300px] overflow-y-auto">
         {errors.map((error, i) => (
@@ -83,6 +85,7 @@ function ConsoleOverlay({ errors }: { errors: string[] }) {
 }
 
 function FixingAnimation({ onComplete }: { onComplete: () => void }) {
+  const { t } = useI18n()
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
@@ -113,10 +116,10 @@ function FixingAnimation({ onComplete }: { onComplete: () => void }) {
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
         />
         <div className="space-y-2">
-          <p className="text-foreground font-mono">REPAIRING REALITY...</p>
+          <p className="text-foreground font-mono">{t("bug.repairing")}</p>
           <div className="w-64 h-2 bg-muted rounded-full overflow-hidden mx-auto">
             <motion.div
-              className="h-full bg-gradient-to-r from-primary to-cyan-400"
+              className="h-full bg-gradient-to-r from-primary to-amber-400"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -128,6 +131,7 @@ function FixingAnimation({ onComplete }: { onComplete: () => void }) {
 }
 
 export function BugDimension() {
+  const { t } = useI18n()
   const [phase, setPhase] = useState<"broken" | "fixing" | "fixed">("broken")
   const [hasTriggered, setHasTriggered] = useState(false)
   const { playGlitch, playBeep, playPing } = useSound()
@@ -166,8 +170,8 @@ setPhase("fixing"); playBeep()
             phase === "broken"
               ? "rgba(220, 38, 38, 0.05)"
               : phase === "fixing"
-              ? "rgba(59, 130, 246, 0.03)"
-              : "rgba(34, 211, 238, 0.03)",
+              ? "rgba(245, 158, 11, 0.03)"
+              : "rgba(245, 158, 11, 0.03)",
         }}
         transition={{ duration: 1 }}
       />
@@ -224,7 +228,7 @@ setPhase("fixing"); playBeep()
                 ? "border-destructive/50 bg-destructive/10"
                 : phase === "fixing"
                 ? "border-primary/30"
-                : "border-cyan-400/30 bg-cyan-400/10"
+                : "border-amber-400/30 bg-amber-400/10"
             } transition-colors duration-500`}
           >
             <span
@@ -233,39 +237,39 @@ setPhase("fixing"); playBeep()
                   ? "text-destructive"
                   : phase === "fixing"
                   ? "text-primary"
-                  : "text-cyan-400"
+                  : "text-amber-400"
               }`}
             >
               {phase === "broken"
-                ? "// ERROR: BUG_DIMENSION.tsx"
+                ? t("bug.errorBadge")
                 : phase === "fixing"
-                ? "// REPAIRING..."
-                : "// SYSTEM_RESTORED.tsx"}
+                ? t("bug.repairBadge")
+                : t("bug.fixedBadge")}
             </span>
           </motion.div>
 
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
             {phase === "broken" ? (
               <>
-                <GlitchText>The Bug</GlitchText>{" "}
-                <span className="text-destructive">Dimension</span>
+                <GlitchText>{t("bug.title")}</GlitchText>{" "}
+                <span className="text-destructive">{t("bug.titleEnd")}</span>
               </>
             ) : phase === "fixing" ? (
-              <span className="text-primary">Restoring Reality...</span>
+              <span className="text-primary">{t("bug.restoring")}</span>
             ) : (
               <>
-                <span className="text-cyan-400 text-glow-cyan">System</span>{" "}
-                <span className="text-foreground">Restored</span>
+                <span className="text-amber-400 text-glow-amber">{t("bug.system")}</span>{" "}
+                <span className="text-foreground">{t("bug.restored")}</span>
               </>
             )}
           </h2>
 
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {phase === "broken"
-              ? "Reality has been corrupted. Bugs have invaded the system."
+              ? t("bug.descBroken")
               : phase === "fixing"
-              ? "Applying patches and restoring system integrity..."
-              : "Order has been restored. All systems operational."}
+              ? t("bug.descFixing")
+              : t("bug.descFixed")}
           </p>
         </motion.div>
 
@@ -279,7 +283,7 @@ setPhase("fixing"); playBeep()
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <ConsoleOverlay errors={consoleErrors} />
+                <ConsoleOverlay errors={consoleErrorKeys.map(k => t(k))} />
 
                 {/* Fragmented UI elements */}
                 <div className="absolute inset-0 p-8">
@@ -324,7 +328,7 @@ setPhase("fixing"); playBeep()
               >
                 <div className="text-center space-y-6">
                   <motion.div
-                    className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-cyan-400 to-primary flex items-center justify-center"
+                    className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-amber-400 to-primary flex items-center justify-center"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", delay: 0.2 }}
@@ -333,10 +337,10 @@ setPhase("fixing"); playBeep()
                   </motion.div>
                   <div className="space-y-2">
                     <h3 className="text-2xl font-bold text-foreground">
-                      Reality Restored
+                      {t("bug.realityRestored")}
                     </h3>
                     <p className="text-muted-foreground">
-                      All bugs have been eliminated from this dimension.
+                      {t("bug.bugsEliminated")}
                     </p>
                   </div>
                   <motion.button
@@ -345,7 +349,7 @@ setPhase("fixing"); playBeep()
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Experience Again
+                    {t("bug.experienceAgain")}
                   </motion.button>
                 </div>
               </motion.div>

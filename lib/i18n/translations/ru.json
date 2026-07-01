@@ -1,0 +1,176 @@
+{
+  "intro": {
+    "initializing": "ИНИЦИАЛИЗАЦИЯ НЕЙРОННОГО ИНТЕРФЕЙСА",
+    "entering": "Вход в память разработчика...",
+    "frontend": "FRONTEND",
+    "memoryPalace": "ДВОРЕЦ ПАМЯТИ",
+    "journey": "Путешествие по цифровому сознанию",
+    "skip": "Пропустить →"
+  },
+  "nav": {
+    "lobby": "Лобби",
+    "experiments": "Эксперименты",
+    "bugDimension": "Измерение багов",
+    "ideas": "Идеи",
+    "timeline": "Хронология",
+    "projects": "Проекты",
+    "finale": "Финал",
+    "home": "Главная",
+    "skills": "Навыки",
+    "about": "Обо мне",
+    "contact": "Контакты"
+  },
+  "navDesc": {
+    "home": "Вернуться на базу",
+    "projects": "Цифровые творения",
+    "skills": "Технологии",
+    "about": "Человек за кодом",
+    "contact": "Открыть канал"
+  },
+  "profile": {
+    "name": "Комрон Хидоятов",
+    "role": "Frontend Разработчик",
+    "available": "Готов к работе"
+  },
+  "contact": {
+    "phone": "Телефон",
+    "gmail": "Gmail",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
+    "github": "GitHub",
+    "label": "// контакты"
+  },
+  "drawer": {
+    "version": "v2.0.4 // {{theme}}.portfolio",
+    "theme_cyber": "кибер",
+    "theme_clean": "чистый"
+  },
+  "lobby": {
+    "badge": "// MEMORY_LOBBY.tsx",
+    "title": "Добро пожаловать в",
+    "titleHighlight": "Дворец Памяти",
+    "description": "Пространство, где код становится искусством, а идеи превращаются в цифровые впечатления. Исследуйте фрагменты сознания разработчика.",
+    "explore": "ИССЛЕДОВАТЬ"
+  },
+  "experiments": {
+    "badge": "// EXPERIMENT_ROOM.tsx",
+    "title": "",
+    "titleHighlight": "Комната",
+    "titleEnd": "Экспериментов",
+    "description": "Место встречи воображения и реализации. Интерактивные эксперименты, расширяющие границы возможного в браузере.",
+    "items": [
+      { "title": "Жидкий Морфизм", "description": "Текучие интерфейсы, реагирующие на ваше присутствие" },
+      { "title": "Магнитные Поля", "description": "Элементы, притягивающиеся к любопытству" },
+      { "title": "Нейронные Паттерны", "description": "Визуальные системы на базе ИИ, которые обучаются и адаптируются" },
+      { "title": "Квантовые Состояния", "description": "Компоненты, существующие в нескольких состояниях одновременно" }
+    ],
+    "button": "Все Эксперименты"
+  },
+  "bug": {
+    "errorBadge": "// ERROR: BUG_DIMENSION.tsx",
+    "repairBadge": "// ВОССТАНОВЛЕНИЕ...",
+    "fixedBadge": "// SYSTEM_RESTORED.tsx",
+    "title": "Измерение",
+    "titleEnd": "Багов",
+    "restoring": "Восстановление реальности...",
+    "system": "Система",
+    "restored": "Восстановлена",
+    "descBroken": "Реальность повреждена. Баги проникли в систему.",
+    "descFixing": "Применение патчей и восстановление целостности системы...",
+    "descFixed": "Порядок восстановлен. Все системы работают.",
+    "console": "Консоль - Обнаружено Повреждение Реальности",
+    "repairing": "ВОССТАНОВЛЕНИЕ РЕАЛЬНОСТИ...",
+    "realityRestored": "Реальность Восстановлена",
+    "bugsEliminated": "Все баги устранены из этого измерения.",
+    "experienceAgain": "Попробовать Снова"
+  },
+  "ideas": {
+    "badge": "// IDEA_GENERATOR.tsx",
+    "title": "",
+    "titleHighlight": "Генератор",
+    "titleEnd": "Идей",
+    "description": "Творческая лаборатория, где концепции обретают форму. Нажмите на любую идею, чтобы изучить её голографический прототип.",
+    "items": [
+      { "title": "Нейро-Дашборд", "description": "Аналитика на базе ИИ, предсказывающая поведение пользователей", "tags": ["ИИ", "Дашборд", "Аналитика"] },
+      { "title": "Квантовые Формы", "description": "Валидация форм, существующая в суперпозиции до наблюдения", "tags": ["Формы", "UX", "Инновации"] },
+      { "title": "Капсула Времени", "description": "Визуализация контроля версий сквозь время", "tags": ["Git", "Визуализация", "История"] },
+      { "title": "Эмоциональный Двигатель", "description": "Интерфейсы, адаптирующиеся к эмоциональному состоянию пользователя", "tags": ["Emotion AI", "Адаптивный", "UX"] }
+    ],
+    "button": "✨ Создать Новую Концепцию"
+  },
+  "timeline": {
+    "badge": "// TIME_TUNNEL.tsx",
+    "title": "Сквозь",
+    "titleHighlight": "Туннель Времени",
+    "description": "Путешествие по эволюции разработчика. Каждое воспоминание — шаг к большему пониманию.",
+    "events": [
+      { "year": "2019", "title": "Начало", "description": "Первые строки кода. Путешествие в цифровой мир начинается.", "emotion": "любопытство" },
+      { "year": "2020", "title": "React Революция", "description": "Открыто компонентное мышление. Сознание расширилось.", "emotion": "волнение" },
+      { "year": "2021", "title": "Full Stack Пробуждение", "description": "Backend встречает frontend. Полная картина emerges.", "emotion": "рост" },
+      { "year": "2022", "title": "Дизайн-Системы", "description": "Строительные блоки цифрового опыта. Консистентность в масштабе.", "emotion": "мастерство" },
+      { "year": "2023", "title": "AI Интеграция", "description": "Машины, которые думают. Код, который пишет себя.", "emotion": "удивление" },
+      { "year": "2024", "title": "Настоящее", "description": "Строим будущее, один компонент за раз.", "emotion": "цель" }
+    ]
+  },
+  "projects": {
+    "badge": "DIGITAL_ARTIFACTS.render()",
+    "title": "Избранные",
+    "titleHighlight": "Проекты",
+    "description": "Каждый проект — портал в другое измерение. Наведите для изучения, нажмите для входа.",
+    "artifacts": "// {{count}} артефактов загружено",
+    "livePreview": "Смотреть",
+    "code": "Код",
+    "moreText": "Новые артефакты создаются в цифровой пустоте...",
+    "comingSoon": "скоро",
+    "items": [
+      { "title": "Mars Commerce", "subtitle": "Межпланетная E-Commerce", "description": "Футуристическая платформа электронной коммерции для эпохи колонизации Марса. Космические каталоги и интерфейс.", "category": "E-Commerce", "status": "LIVE" },
+      { "title": "Hamster Kombat", "subtitle": "Tap-to-Earn Клон Игры", "description": "Идеальная копия вирусной Telegram-игры. Механика тапов, система улучшений и увлекательные анимации.", "category": "Игры", "status": "LIVE" },
+      { "title": "Hacker Portfolio", "subtitle": "Cyberpunk Сайт Разработчика", "description": "Неоновое, киберпанк-портфолио. Эстетика терминала встречается с современным дизайном.", "category": "Портфолио", "status": "LIVE" },
+      { "title": "Foodi Restaurant", "subtitle": "Премиум Лендинг Ресторана", "description": "Привлекательный лендинг для современного ресторана. Красивые макеты фотографий еды и меню.", "category": "Лендинг", "status": "LIVE" },
+      { "title": "YouTube Clone", "subtitle": "Видео Стриминг Платформа", "description": "Комплексный клон YouTube с воспроизведением видео, поиском, страницами каналов и улучшенным интерфейсом.", "category": "Клон", "status": "LIVE" }
+    ]
+  },
+  "finale": {
+    "terminal": "consciousness.terminal",
+    "lines": [
+      { "text": "> MEMORY_PALACE.shutdown()" },
+      { "text": "Сохранение нейронных путей..." },
+      { "text": "Архивация опыта..." },
+      { "text": "Резервное копирование сознания завершено." },
+      { "text": "" },
+      { "text": "> echo 'Спасибо за исследование'" }
+    ],
+    "thanks": "Спасибо за",
+    "thanksHighlight": "исследование.",
+    "description": "Каждая строка кода — мысль, каждый компонент — воспоминание, каждая анимация — чувство. Это цифровое сознание frontend-разработчика.",
+    "restart": "Начать Заново",
+    "backToLobby": "Вернуться в Лобби",
+    "builtWith": "Создано с ❤️ и бесчисленными чашками кофе"
+  },
+  "sound": {
+    "audioSystem": "Аудио Система",
+    "soundEffects": "Звуковые Эффекты",
+    "volume": "ГРОМКОСТЬ"
+  },
+  "theme": {
+    "dark": "ТЁМНАЯ",
+    "light": "СВЕТЛАЯ",
+    "switchToDark": "Переключить на тёмную тему",
+    "switchToLight": "Переключить на светлую тему"
+  },
+  "language": {
+    "switchTo": "Сменить язык",
+    "en": "English",
+    "uz": "O'zbek",
+    "ru": "Русский"
+  },
+  "misc": {
+    "errors": {
+      "typeError": "TypeError: Cannot read property 'undefined' of null",
+      "refError": "Uncaught ReferenceError: reality is not defined",
+      "memoryLeak": "Warning: Memory leak detected in component <Brain />",
+      "maxDepth": "Error: Maximum update depth exceeded",
+      "syntaxError": "SyntaxError: Unexpected token 'dreams'"
+    }
+  }
+}

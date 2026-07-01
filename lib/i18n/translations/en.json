@@ -1,0 +1,176 @@
+{
+  "intro": {
+    "initializing": "INITIALIZING NEURAL INTERFACE",
+    "entering": "Entering developer memory...",
+    "frontend": "FRONTEND",
+    "memoryPalace": "MEMORY PALACE",
+    "journey": "A journey through digital consciousness",
+    "skip": "Skip Intro →"
+  },
+  "nav": {
+    "lobby": "Lobby",
+    "experiments": "Experiments",
+    "bugDimension": "Bug Dimension",
+    "ideas": "Ideas",
+    "timeline": "Timeline",
+    "projects": "Projects",
+    "finale": "Finale",
+    "home": "Home",
+    "skills": "Skills",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "navDesc": {
+    "home": "Return to base",
+    "projects": "Digital creations",
+    "skills": "Tech arsenal",
+    "about": "The human behind",
+    "contact": "Open a channel"
+  },
+  "profile": {
+    "name": "Komron Xidoyatov",
+    "role": "Frontend Developer",
+    "available": "Available for work"
+  },
+  "contact": {
+    "phone": "Phone",
+    "gmail": "Gmail",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
+    "github": "GitHub",
+    "label": "// contact"
+  },
+  "drawer": {
+    "version": "v2.0.4 // {{theme}}.portfolio",
+    "theme_cyber": "cyberpunk",
+    "theme_clean": "clean"
+  },
+  "lobby": {
+    "badge": "// MEMORY_LOBBY.tsx",
+    "title": "Welcome to the",
+    "titleHighlight": "Memory Palace",
+    "description": "A space where code becomes art, and ideas transform into digital experiences. Explore the fragments of a developer's consciousness.",
+    "explore": "EXPLORE"
+  },
+  "experiments": {
+    "badge": "// EXPERIMENT_ROOM.tsx",
+    "title": "The",
+    "titleHighlight": "Experiment",
+    "titleEnd": "Room",
+    "description": "Where imagination meets implementation. Interactive experiments that push the boundaries of what's possible in the browser.",
+    "items": [
+      { "title": "Liquid Morphism", "description": "Fluid interfaces that respond to your presence" },
+      { "title": "Magnetic Fields", "description": "Elements that gravitate towards curiosity" },
+      { "title": "Neural Patterns", "description": "AI-driven visual systems that learn and adapt" },
+      { "title": "Quantum States", "description": "Components existing in multiple states simultaneously" }
+    ],
+    "button": "Explore All Experiments"
+  },
+  "bug": {
+    "errorBadge": "// ERROR: BUG_DIMENSION.tsx",
+    "repairBadge": "// REPAIRING...",
+    "fixedBadge": "// SYSTEM_RESTORED.tsx",
+    "title": "The Bug",
+    "titleEnd": "Dimension",
+    "restoring": "Restoring Reality...",
+    "system": "System",
+    "restored": "Restored",
+    "descBroken": "Reality has been corrupted. Bugs have invaded the system.",
+    "descFixing": "Applying patches and restoring system integrity...",
+    "descFixed": "Order has been restored. All systems operational.",
+    "console": "Console - Reality Corruption Detected",
+    "repairing": "REPAIRING REALITY...",
+    "realityRestored": "Reality Restored",
+    "bugsEliminated": "All bugs have been eliminated from this dimension.",
+    "experienceAgain": "Experience Again"
+  },
+  "ideas": {
+    "badge": "// IDEA_GENERATOR.tsx",
+    "title": "The",
+    "titleHighlight": "Idea",
+    "titleEnd": "Generator",
+    "description": "A creative laboratory where concepts take shape. Click on any idea to explore its holographic wireframe and potential.",
+    "items": [
+      { "title": "Neural Dashboard", "description": "AI-powered analytics that predict user behavior", "tags": ["AI", "Dashboard", "Analytics"] },
+      { "title": "Quantum Forms", "description": "Form validation that exists in superposition until observed", "tags": ["Forms", "UX", "Innovation"] },
+      { "title": "Time Capsule", "description": "Version control visualization through time", "tags": ["Git", "Visualization", "History"] },
+      { "title": "Emotion Engine", "description": "Interfaces that adapt to user emotional states", "tags": ["Emotion AI", "Adaptive", "UX"] }
+    ],
+    "button": "✨ Generate New Concept"
+  },
+  "timeline": {
+    "badge": "// TIME_TUNNEL.tsx",
+    "title": "Through the",
+    "titleHighlight": "Time Tunnel",
+    "description": "A journey through the evolution of a developer. Each memory a stepping stone to greater understanding.",
+    "events": [
+      { "year": "2019", "title": "The Beginning", "description": "First lines of code. The journey into the digital realm begins.", "emotion": "curiosity" },
+      { "year": "2020", "title": "React Revolution", "description": "Discovered component-based thinking. Mind expanded.", "emotion": "excitement" },
+      { "year": "2021", "title": "Full Stack Awakening", "description": "Backend meets frontend. The full picture emerges.", "emotion": "growth" },
+      { "year": "2022", "title": "Design Systems", "description": "Building blocks of digital experiences. Consistency at scale.", "emotion": "mastery" },
+      { "year": "2023", "title": "AI Integration", "description": "Machines that think. Code that writes itself.", "emotion": "wonder" },
+      { "year": "2024", "title": "The Present", "description": "Building the future, one component at a time.", "emotion": "purpose" }
+    ]
+  },
+  "projects": {
+    "badge": "DIGITAL_ARTIFACTS.render()",
+    "title": "Featured",
+    "titleHighlight": "Projects",
+    "description": "Each project is a portal to another dimension. Hover to explore, click to enter.",
+    "artifacts": "// {{count}} artifacts loaded",
+    "livePreview": "Live Preview",
+    "code": "Code",
+    "moreText": "More artifacts are being forged in the digital void...",
+    "comingSoon": "coming_soon",
+    "items": [
+      { "title": "Mars Commerce", "subtitle": "Interplanetary E-Commerce", "description": "A futuristic e-commerce platform designed for the Martian colonization era. Features cosmic product catalogs, space-themed UI, and seamless shopping experience.", "category": "E-Commerce", "status": "LIVE" },
+      { "title": "Hamster Kombat", "subtitle": "Tap-to-Earn Game Clone", "description": "A pixel-perfect recreation of the viral Telegram game. Features tap mechanics, upgrade systems, and engaging gameplay animations.", "category": "Gaming", "status": "LIVE" },
+      { "title": "Hacker Portfolio", "subtitle": "Cyberpunk Developer Site", "description": "A neon-drenched, cyberpunk-inspired portfolio that showcases the dark side of web development. Terminal aesthetics meet modern design.", "category": "Portfolio", "status": "LIVE" },
+      { "title": "Foodi Restaurant", "subtitle": "Premium Restaurant Landing", "description": "An appetizing landing page for a modern restaurant. Features stunning food photography layouts, menu showcases, and reservation systems.", "category": "Landing Page", "status": "LIVE" },
+      { "title": "YouTube Clone", "subtitle": "Video Streaming Platform", "description": "A comprehensive YouTube clone featuring video playback, search functionality, channel pages, and a familiar yet enhanced user interface.", "category": "Clone", "status": "LIVE" }
+    ]
+  },
+  "finale": {
+    "terminal": "consciousness.terminal",
+    "lines": [
+      { "text": "> MEMORY_PALACE.shutdown()" },
+      { "text": "Saving neural pathways..." },
+      { "text": "Archiving experiences..." },
+      { "text": "Consciousness backup complete." },
+      { "text": "" },
+      { "text": "> echo 'Thank you for exploring'" }
+    ],
+    "thanks": "Thanks for exploring",
+    "thanksHighlight": "my mind.",
+    "description": "Every line of code is a thought, every component a memory, every animation a feeling. This is the digital consciousness of a frontend developer.",
+    "restart": "Restart Experience",
+    "backToLobby": "Back to Lobby",
+    "builtWith": "Built with ❤️ and countless cups of coffee"
+  },
+  "sound": {
+    "audioSystem": "Audio System",
+    "soundEffects": "Sound Effects",
+    "volume": "VOLUME"
+  },
+  "theme": {
+    "dark": "DARK",
+    "light": "LIGHT",
+    "switchToDark": "Switch to dark mode",
+    "switchToLight": "Switch to light mode"
+  },
+  "language": {
+    "switchTo": "Switch language",
+    "en": "English",
+    "uz": "O'zbek",
+    "ru": "Русский"
+  },
+  "misc": {
+    "errors": {
+      "typeError": "TypeError: Cannot read property 'undefined' of null",
+      "refError": "Uncaught ReferenceError: reality is not defined",
+      "memoryLeak": "Warning: Memory leak detected in component <Brain />",
+      "maxDepth": "Error: Maximum update depth exceeded",
+      "syntaxError": "SyntaxError: Unexpected token 'dreams'"
+    }
+  }
+}

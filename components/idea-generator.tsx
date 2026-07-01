@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import { useSound } from "@/lib/sounds"
+import { useI18n } from "@/lib/i18n/i18n-context"
 
 const projectConcepts = [
   {
@@ -74,7 +75,7 @@ function HolographicWireframe() {
           {/* Main content */}
           <div className="flex-1 flex flex-col gap-2">
             <motion.div
-              className="w-full h-[60%] rounded-lg border-2 border-dashed border-cyan-400/40 bg-cyan-400/5"
+              className="w-full h-[60%] rounded-lg border-2 border-dashed border-amber-400/40 bg-amber-400/5"
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -196,6 +197,7 @@ function ConceptCard({
 }
 
 export function IdeaGenerator() {
+  const { t } = useI18n()
   const [activeId, setActiveId] = useState<number | null>(1)
   const { playHologram, playHover } = useSound()
 
@@ -233,26 +235,25 @@ export function IdeaGenerator() {
           className="text-center mb-16"
         >
           <motion.div
-            className="inline-block mb-6 px-4 py-2 rounded-full glass border border-cyan-400/20"
+            className="inline-block mb-6 px-4 py-2 rounded-full glass border border-amber-400/20"
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
             viewport={{ once: true }}
           >
-            <span className="text-sm font-mono text-cyan-400">
-              {"// IDEA_GENERATOR.tsx"}
+            <span className="text-sm font-mono text-amber-400">
+              {t("ideas.badge")}
             </span>
           </motion.div>
 
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-            <span className="text-foreground">The</span>{" "}
-            <span className="text-cyan-400 text-glow-cyan">Idea</span>{" "}
-            <span className="text-foreground">Generator</span>
+            <span className="text-foreground">{t("ideas.title")}</span>{" "}
+            <span className="text-amber-400 text-glow-gold">{t("ideas.titleHighlight")}</span>{" "}
+            <span className="text-foreground">{t("ideas.titleEnd")}</span>
           </h2>
 
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A creative laboratory where concepts take shape. Click on any idea to
-            explore its holographic wireframe and potential.
+            {t("ideas.description")}
           </p>
         </motion.div>
 
@@ -280,18 +281,18 @@ export function IdeaGenerator() {
           className="flex justify-center mt-12"
         >
           <motion.button
-            className="group relative px-8 py-4 rounded-2xl glass border border-cyan-400/30 overflow-hidden"
+            className="group relative px-8 py-4 rounded-2xl glass border border-amber-400/30 overflow-hidden"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-primary/20"
+              className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-primary/20"
               initial={{ x: "-100%" }}
               whileHover={{ x: "100%" }}
               transition={{ duration: 0.5 }}
             />
-            <span className="relative z-10 font-medium text-cyan-400 group-hover:text-foreground transition-colors">
-              ✨ Generate New Concept
+            <span className="relative z-10 font-medium text-amber-400 group-hover:text-foreground transition-colors">
+              {t("ideas.button")}
             </span>
           </motion.button>
         </motion.div>

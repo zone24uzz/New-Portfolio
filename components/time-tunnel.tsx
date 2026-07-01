@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
+import { useI18n } from "@/lib/i18n/i18n-context"
 
 const timelineEvents = [
   {
@@ -129,6 +130,7 @@ function TimelineCard({
 }
 
 export function TimeTunnel() {
+  const { t } = useI18n()
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -215,18 +217,17 @@ export function TimeTunnel() {
             viewport={{ once: true }}
           >
             <span className="text-sm font-mono text-primary">
-              {"// TIME_TUNNEL.tsx"}
+              {t("timeline.badge")}
             </span>
           </motion.div>
 
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-            <span className="text-foreground">Through the</span>{" "}
-            <span className="text-primary text-glow-blue">Time Tunnel</span>
+            <span className="text-foreground">{t("timeline.title")}</span>{" "}
+            <span className="text-primary text-glow-gold">{t("timeline.titleHighlight")}</span>
           </h2>
 
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A journey through the evolution of a developer. Each memory a stepping
-            stone to greater understanding.
+            {t("timeline.description")}
           </p>
         </motion.div>
 

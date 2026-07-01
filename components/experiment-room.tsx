@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { useRef, useState } from "react"
 import { useSound } from "@/lib/sounds"
+import { useI18n } from "@/lib/i18n/i18n-context"
 
 const experiments = [
   {
@@ -171,6 +172,7 @@ function MagneticCard({
 }
 
 export function ExperimentRoom() {
+  const { t } = useI18n()
   return (
     <section id="experiments" className="relative min-h-screen py-32 px-4">
       {/* Background elements */}
@@ -209,19 +211,18 @@ export function ExperimentRoom() {
             viewport={{ once: true }}
           >
             <span className="text-sm font-mono text-accent">
-              {"// EXPERIMENT_ROOM.tsx"}
+              {t("experiments.badge")}
             </span>
           </motion.div>
 
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-            <span className="text-foreground">The</span>{" "}
-            <span className="text-accent">Experiment</span>{" "}
-            <span className="text-foreground">Room</span>
+            <span className="text-foreground">{t("experiments.title")}</span>{" "}
+            <span className="text-accent">{t("experiments.titleHighlight")}</span>{" "}
+            <span className="text-foreground">{t("experiments.titleEnd")}</span>
           </h2>
 
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Where imagination meets implementation. Interactive experiments that
-            push the boundaries of what&apos;s possible in the browser.
+            {t("experiments.description")}
           </p>
         </motion.div>
 
@@ -239,7 +240,7 @@ export function ExperimentRoom() {
           viewport={{ once: true }}
           className="flex justify-center"
         >
-          <LiquidButton>Explore All Experiments</LiquidButton>
+          <LiquidButton>{t("experiments.button")}</LiquidButton>
         </motion.div>
       </div>
     </section>

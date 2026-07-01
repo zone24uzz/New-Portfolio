@@ -3,8 +3,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useSound } from "@/lib/sounds";
+import { useI18n } from "@/lib/i18n/i18n-context";
 
 export function SoundControls() {
+  const { t } = useI18n();
   const { volume, muted, setVolume, toggleMute, playClick } = useSound();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,14 +36,14 @@ export function SoundControls() {
             className="absolute bottom-16 right-0 p-4 rounded-xl border border-white/10 bg-black/80 backdrop-blur-xl shadow-2xl min-w-[200px]"
           >
             {/* Glow effect */}
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/10 to-violet-500/10 blur-xl -z-10" />
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-amber-500/10 to-amber-500/10 blur-xl -z-10" />
             
             <div className="space-y-4">
               {/* Header */}
               <div className="flex items-center gap-2 pb-2 border-b border-white/10">
-                <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                 <span className="text-xs font-mono text-white/70 uppercase tracking-wider">
-                  Audio System
+                  {t("sound.audioSystem")}
                 </span>
               </div>
 
@@ -50,19 +52,17 @@ export function SoundControls() {
                 onClick={handleMuteToggle}
                 className="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group"
               >
-                <span className="text-sm text-white/80 group-hover:text-white transition-colors">
-                  Sound Effects
-                </span>
+                <span className="text-sm text-white/80 group-hover:text-white transition-colors">{t("sound.soundEffects")}</span>
                 <div
                   className={`w-10 h-5 rounded-full transition-colors relative ${
-                    muted ? "bg-white/20" : "bg-cyan-500/50"
+                    muted ? "bg-white/20" : "bg-amber-500/50"
                   }`}
                 >
                   <motion.div
                     animate={{ x: muted ? 0 : 20 }}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full transition-colors ${
-                      muted ? "bg-white/50" : "bg-cyan-400"
+                      muted ? "bg-white/50" : "bg-amber-400"
                     }`}
                   />
                 </div>
@@ -71,8 +71,8 @@ export function SoundControls() {
               {/* Volume Slider */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-white/50 font-mono">VOLUME</span>
-                  <span className="text-xs text-cyan-400 font-mono">
+                  <span className="text-xs text-white/50 font-mono">{t("sound.volume")}</span>
+                  <span className="text-xs text-amber-400 font-mono">
                     {Math.round(volume * 100)}%
                   </span>
                 </div>
@@ -90,22 +90,22 @@ export function SoundControls() {
                       [&::-webkit-slider-thumb]:w-4
                       [&::-webkit-slider-thumb]:h-4
                       [&::-webkit-slider-thumb]:rounded-full
-                      [&::-webkit-slider-thumb]:bg-cyan-400
-                      [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(34,211,238,0.5)]
+                      [&::-webkit-slider-thumb]:bg-amber-400
+                      [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(245,158,11,0.5)]
                       [&::-webkit-slider-thumb]:cursor-pointer
                       [&::-webkit-slider-thumb]:transition-transform
                       [&::-webkit-slider-thumb]:hover:scale-110
                       [&::-moz-range-thumb]:w-4
                       [&::-moz-range-thumb]:h-4
                       [&::-moz-range-thumb]:rounded-full
-                      [&::-moz-range-thumb]:bg-cyan-400
+                      [&::-moz-range-thumb]:bg-amber-400
                       [&::-moz-range-thumb]:border-0
-                      [&::-moz-range-thumb]:shadow-[0_0_10px_rgba(34,211,238,0.5)]
+                      [&::-moz-range-thumb]:shadow-[0_0_10px_rgba(245,158,11,0.5)]
                       [&::-moz-range-thumb]:cursor-pointer"
                   />
                   {/* Volume bar fill */}
                   <div
-                    className="absolute top-0 left-0 h-2 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 pointer-events-none"
+                    className="absolute top-0 left-0 h-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-500 pointer-events-none"
                     style={{ width: `${volume * 100}%` }}
                   />
                 </div>
@@ -128,7 +128,7 @@ export function SoundControls() {
                     className={`w-1 rounded-full ${
                       muted
                         ? "bg-white/20"
-                        : "bg-gradient-to-t from-cyan-500 to-violet-500"
+                        : "bg-gradient-to-t from-amber-500 to-amber-500"
                     }`}
                   />
                 ))}
@@ -145,7 +145,7 @@ export function SoundControls() {
         whileTap={{ scale: 0.95 }}
         className={`relative w-14 h-14 rounded-full border backdrop-blur-xl shadow-2xl transition-all duration-300 ${
           isOpen
-            ? "border-cyan-500/50 bg-cyan-500/20"
+            ? "border-amber-500/50 bg-amber-500/20"
             : "border-white/20 bg-black/50 hover:border-white/40"
         }`}
       >
@@ -155,7 +155,7 @@ export function SoundControls() {
             isOpen ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            boxShadow: "0 0 30px rgba(34, 211, 238, 0.3)",
+            boxShadow: "0 0 30px rgba(245, 158, 11, 0.3)",
           }}
         />
 
@@ -184,7 +184,7 @@ export function SoundControls() {
           ) : (
             <svg
               className={`w-6 h-6 transition-colors ${
-                isOpen ? "text-cyan-400" : "text-white/70"
+                isOpen ? "text-amber-400" : "text-white/70"
               }`}
               fill="none"
               viewBox="0 0 24 24"
@@ -212,7 +212,7 @@ export function SoundControls() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute inset-0 rounded-full border border-cyan-400/50"
+            className="absolute inset-0 rounded-full border border-amber-400/50"
           />
         )}
       </motion.button>

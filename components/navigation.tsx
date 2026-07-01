@@ -3,18 +3,20 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { useSound } from "@/lib/sounds"
+import { useI18n } from "@/lib/i18n/i18n-context"
 
 const navItems = [
-  { id: "lobby", label: "Lobby", icon: "◈" },
-  { id: "experiments", label: "Experiments", icon: "⬡" },
-  { id: "bug-dimension", label: "Bug Dimension", icon: "⚠" },
-  { id: "ideas", label: "Ideas", icon: "✧" },
-  { id: "timeline", label: "Timeline", icon: "◎" },
-  { id: "projects", label: "Projects", icon: "◇" },
-  { id: "finale", label: "Finale", icon: "★" },
+  { id: "lobby", key: "nav.lobby", icon: "◈" },
+  { id: "experiments", key: "nav.experiments", icon: "⬡" },
+  { id: "bug-dimension", key: "nav.bugDimension", icon: "⚠" },
+  { id: "ideas", key: "nav.ideas", icon: "✧" },
+  { id: "timeline", key: "nav.timeline", icon: "◎" },
+  { id: "projects", key: "nav.projects", icon: "◇" },
+  { id: "finale", key: "nav.finale", icon: "★" },
 ]
 
 export function Navigation() {
+  const { t } = useI18n()
   const [activeSection, setActiveSection] = useState("lobby")
   const [isExpanded, setIsExpanded] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -91,7 +93,7 @@ export function Navigation() {
 
                 {/* Tooltip */}
                 <div className="absolute left-full ml-3 px-3 py-1.5 rounded-lg glass-strong text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  {item.label}
+                  {t(item.key)}
                 </div>
 
                 {/* Active indicator */}
@@ -139,7 +141,7 @@ export function Navigation() {
                     >
                       <span className="text-lg">{item.icon}</span>
                       <span className="text-xs font-medium truncate w-full text-center">
-                        {item.label}
+                        {t(item.key)}
                       </span>
                     </motion.button>
                   ))}
@@ -158,7 +160,7 @@ export function Navigation() {
                 {navItems.find((i) => i.id === activeSection)?.icon}
               </span>
               <span className="font-medium text-foreground">
-                {navItems.find((i) => i.id === activeSection)?.label}
+                {t(navItems.find((i) => i.id === activeSection)?.key || 'nav.lobby')}
               </span>
             </div>
             <motion.span

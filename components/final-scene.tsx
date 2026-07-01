@@ -3,17 +3,20 @@
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { useSound } from "@/lib/sounds"
+import { useI18n } from "@/lib/i18n/i18n-context"
 
 const terminalLines = [
-  { text: "> MEMORY_PALACE.shutdown()", delay: 0 },
-  { text: "Saving neural pathways...", delay: 0.5 },
-  { text: "Archiving experiences...", delay: 1 },
-  { text: "Consciousness backup complete.", delay: 1.5 },
-  { text: "", delay: 2 },
-  { text: "> echo 'Thank you for exploring'", delay: 2.5 },
+  { textKey: "finale.lines.0.text" as const, delay: 0 },
+  { textKey: "finale.lines.1.text" as const, delay: 0.5 },
+  { textKey: "finale.lines.2.text" as const, delay: 1 },
+  { textKey: "finale.lines.3.text" as const, delay: 1.5 },
+  { textKey: "finale.lines.4.text" as const, delay: 2 },
+  { textKey: "finale.lines.5.text" as const, delay: 2.5 },
 ]
 
-function TypewriterText({ text, delay }: { text: string; delay: number }) {
+function TypewriterLine({ textKey, delay }: { textKey: string; delay: number }) {
+  const { t } = useI18n()
+  const text = t(textKey)
   const [displayText, setDisplayText] = useState("")
   const [showCursor, setShowCursor] = useState(true)
 
@@ -53,6 +56,7 @@ function TypewriterText({ text, delay }: { text: string; delay: number }) {
 }
 
 export function FinalScene({ onRestart }: { onRestart: () => void }) {
+  const { t } = useI18n()
   const [showTerminal, setShowTerminal] = useState(false)
   const [showMessage, setShowMessage] = useState(false)
   const { playClick, playHover, playPing, playWhoosh } = useSound()
@@ -122,7 +126,7 @@ export function FinalScene({ onRestart }: { onRestart: () => void }) {
               <div className="w-3 h-3 rounded-full bg-emerald-500/60" />
             </div>
             <span className="text-xs font-mono text-muted-foreground ml-2">
-              consciousness.terminal
+              {t("finale.terminal")}
             </span>
           </div>
 
@@ -130,7 +134,7 @@ export function FinalScene({ onRestart }: { onRestart: () => void }) {
           <div className="p-6 text-left font-mono text-sm space-y-2">
             {terminalLines.map((line, i) => (
               <div key={i} className="text-muted-foreground">
-                <TypewriterText text={line.text} delay={line.delay} />
+                <TypewriterLine textKey={line.textKey} delay={line.delay} />
               </div>
             ))}
           </div>
@@ -152,9 +156,9 @@ export function FinalScene({ onRestart }: { onRestart: () => void }) {
             animate={{ letterSpacing: "-0.02em" }}
             transition={{ duration: 1.5, delay: 0.5 }}
           >
-            <span className="text-foreground">Thanks for exploring</span>
+            <span className="text-foreground">{t("finale.thanks")}</span>
             <br />
-            <span className="text-primary text-glow-blue">my mind.</span>
+            <span className="text-primary text-glow-gold">{t("finale.thanksHighlight")}</span>
           </motion.h2>
 
           <motion.p
@@ -163,9 +167,7 @@ export function FinalScene({ onRestart }: { onRestart: () => void }) {
             transition={{ delay: 1 }}
             className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto"
           >
-            Every line of code is a thought, every component a memory, every
-            animation a feeling. This is the digital consciousness of a frontend
-            developer.
+            {t("finale.description")}
           </motion.p>
 
           {/* Action buttons */}
@@ -185,7 +187,7 @@ export function FinalScene({ onRestart }: { onRestart: () => void }) {
               <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-gradient" />
               <span className="relative z-10 font-medium text-white flex items-center gap-2">
                 <span>↺</span>
-                Restart Experience
+                {t("finale.restart")}
               </span>
             </motion.button>
 
@@ -198,7 +200,7 @@ export function FinalScene({ onRestart }: { onRestart: () => void }) {
               whileTap={{ scale: 0.95 }}
             >
               <span>↑</span>
-              Back to Lobby
+              {t("finale.backToLobby")}
             </motion.a>
           </motion.div>
 
@@ -231,7 +233,7 @@ export function FinalScene({ onRestart }: { onRestart: () => void }) {
           transition={{ delay: 2.5 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs font-mono text-muted-foreground"
         >
-          Built with ❤️ and countless cups of coffee
+          {t("finale.builtWith")}
         </motion.div>
       </div>
 

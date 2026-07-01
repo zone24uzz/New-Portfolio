@@ -1,0 +1,176 @@
+{
+  "intro": {
+    "initializing": "NEYRAL INTERFEYS ISHGA TUSHIRILMOQDA",
+    "entering": "Dasturchi xotirasiga kirish...",
+    "frontend": "FRONTEND",
+    "memoryPalace": "XOTIRA SAROYI",
+    "journey": "Raqamli ong orqali sayohat",
+    "skip": "O'tkazib yuborish →"
+  },
+  "nav": {
+    "lobby": "Lobbi",
+    "experiments": "Tajribalar",
+    "bugDimension": "Bug o'lchami",
+    "ideas": "G'oyalar",
+    "timeline": "Vaqt chizig'i",
+    "projects": "Loyihalar",
+    "finale": "Yakun",
+    "home": "Bosh sahifa",
+    "skills": "Ko'nikmalar",
+    "about": "Men haqimda",
+    "contact": "Aloqa"
+  },
+  "navDesc": {
+    "home": "Bosh sahifaga qaytish",
+    "projects": "Raqamli yaratilmalar",
+    "skills": "Texnologiyalar",
+    "about": "Orqadagi inson",
+    "contact": "Aloqa ochish"
+  },
+  "profile": {
+    "name": "Komron Xidoyatov",
+    "role": "Frontend Dasturchi",
+    "available": "Ishga tayyor"
+  },
+  "contact": {
+    "phone": "Telefon",
+    "gmail": "Gmail",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
+    "github": "GitHub",
+    "label": "// aloqa"
+  },
+  "drawer": {
+    "version": "v2.0.4 // {{theme}}.portfolio",
+    "theme_cyber": "kiber",
+    "theme_clean": "toza"
+  },
+  "lobby": {
+    "badge": "// MEMORY_LOBBY.tsx",
+    "title": "Xush kelibsiz",
+    "titleHighlight": "Xotira Saroyiga",
+    "description": "Kod san'atga aylanadigan va g'oyalar raqamli tajribalarga aylanadigan makon. Dasturchi ongining qismlarini kashf eting.",
+    "explore": "KASHF ET"
+  },
+  "experiments": {
+    "badge": "// EXPERIMENT_ROOM.tsx",
+    "title": "",
+    "titleHighlight": "Tajribalar",
+    "titleEnd": "Xonasi",
+    "description": "Tasavvur va amaliyot uchrashadigan joy. Brauzerda mumkin bo'lgan chegaralarni kengaytiruvchi interaktiv tajribalar.",
+    "items": [
+      { "title": "Suyuq Morfizm", "description": "Sizning mavjudligingizga javob beradigan suyuq interfeyslar" },
+      { "title": "Magnit Maydonlar", "description": "Qiziqish tomon tortiladigan elementlar" },
+      { "title": "Neyron Naqshlar", "description": "O'rganadigan va moslashadigan AI vizual tizimlari" },
+      { "title": "Kvant Holatlar", "description": "Bir vaqtning o'zida bir nechta holatlarda mavjud komponentlar" }
+    ],
+    "button": "Barcha Tajribalarni Ko'rish"
+  },
+  "bug": {
+    "errorBadge": "// ERROR: BUG_DIMENSION.tsx",
+    "repairBadge": "// QAYTA TIKLANMOQDA...",
+    "fixedBadge": "// SYSTEM_RESTORED.tsx",
+    "title": "Bug",
+    "titleEnd": "O'lchami",
+    "restoring": "Haqiqatni tiklash...",
+    "system": "Tizim",
+    "restored": "Tiklandi",
+    "descBroken": "Haqiqat buzildi. Xatolar tizimga kirib keldi.",
+    "descFixing": "Yamalar qo'llanilmoqda va tizim yaxlitligi tiklanmoqda...",
+    "descFixed": "Tartib tiklandi. Barcha tizimlar ishlamoqda.",
+    "console": "Konsol - Haqiqat Buzilishi Aniqlangan",
+    "repairing": "HAQIQAT TIKLANMOQDA...",
+    "realityRestored": "Haqiqat Tiklandi",
+    "bugsEliminated": "Barcha xatolar ushbu o'lchamdan yo'q qilindi.",
+    "experienceAgain": "Qaytadan Sinab Ko'ring"
+  },
+  "ideas": {
+    "badge": "// IDEA_GENERATOR.tsx",
+    "title": "",
+    "titleHighlight": "G'oyalar",
+    "titleEnd": "Generatori",
+    "description": "Kontseptsiyalar shakllanadigan ijodiy laboratoriya. G'oyalarni kashf qilish uchun bosing.",
+    "items": [
+      { "title": "Neyron Dashboard", "description": "Foydalanuvchi xatti-harakatini bashorat qiluvchi AI-analitika", "tags": ["AI", "Dashboard", "Analitika"] },
+      { "title": "Kvant Formalar", "description": "Kuzatilgunga qadar superpozitsiyada mavjud bo'lgan forma validatsiyasi", "tags": ["Formalar", "UX", "Innovatsiya"] },
+      { "title": "Vaqt Kapsulasi", "description": "Vaqt orqali versiya nazorati vizualizatsiyasi", "tags": ["Git", "Vizualizatsiya", "Tarix"] },
+      { "title": "Emotion Engine", "description": "Foydalanuvchi hissiy holatiga moslashadigan interfeyslar", "tags": ["Emotion AI", "Adaptiv", "UX"] }
+    ],
+    "button": "✨ Yangi Kontseptsiya Yaratish"
+  },
+  "timeline": {
+    "badge": "// TIME_TUNNEL.tsx",
+    "title": "Vaqt",
+    "titleHighlight": "Tunnelidan",
+    "description": "Dasturchi evolyutsiyasi bo'ylab sayohat. Har bir xotira - buyuk tushunchaga qadam.",
+    "events": [
+      { "year": "2019", "title": "Boshlanish", "description": "Birinchi kod qatorlari. Raqamli olamga sayohat boshlanadi.", "emotion": "qiziqish" },
+      { "year": "2020", "title": "React Inqilobi", "description": "Komponent asosidagi fikrlash kashf etildi. Ong kengaydi.", "emotion": "hayajon" },
+      { "year": "2021", "title": "Full Stack Uyg'onishi", "description": "Backend frontend bilan uchrashadi. To'liq rasm paydo bo'ladi.", "emotion": "o'sish" },
+      { "year": "2022", "title": "Dizayn Tizimlari", "description": "Raqamli tajribalarning qurilish bloklari. Keng miqyosda izchillik.", "emotion": "mahorat" },
+      { "year": "2023", "title": "AI Integratsiyasi", "description": "O'ylaydigan mashinalar. O'zini yozadigan kod.", "emotion": "hayrat" },
+      { "year": "2024", "title": "Hozirgi Kun", "description": "Kelajakni qurish, bir vaqtning o'zida bitta komponent.", "emotion": "maqsad" }
+    ]
+  },
+  "projects": {
+    "badge": "DIGITAL_ARTIFACTS.render()",
+    "title": "Tanlangan",
+    "titleHighlight": "Loyihalar",
+    "description": "Har bir loyiha boshqa o'lchamga portal. Hover qiling va bosing.",
+    "artifacts": "// {{count}} ta loyiha yuklandi",
+    "livePreview": "Ko'rish",
+    "code": "Kod",
+    "moreText": "Yangi loyihalar raqamli bo'shliqda yaratilmoqda...",
+    "comingSoon": "tez_orada",
+    "items": [
+      { "title": "Mars Commerce", "subtitle": "Sayyoralararo E-Tijorat", "description": "Mars mustamlakasi davri uchun mo'ljallangan futuristik elektron tijorat platformasi. Kosmik mahsulot kataloglari va kosmik mavzuli interfeys.", "category": "E-Tijorat", "status": "LIVE" },
+      { "title": "Hamster Kombat", "subtitle": "Tap-to-Earn O'yin Kloni", "description": "Viral Telegram o'yinining mukammal nusxasi. Tap mexanikasi, yangilash tizimlari va qiziqarli animatsiyalar.", "category": "O'yin", "status": "LIVE" },
+      { "title": "Hacker Portfolio", "subtitle": "Cyberpunk Dasturchi Sayti", "description": "Neon bilan to'ldirilgan, kiberpankdan ilhomlangan portfolio. Terminal estetikasi zamonaviy dizayn bilan uchrashadi.", "category": "Portfolio", "status": "LIVE" },
+      { "title": "Foodi Restaurant", "subtitle": "Premium Restoran Sahifasi", "description": "Zamonaviy restoran uchun jozibali landing page. Chiroyli ovqat fotosuratlari va menyu namoyishlari.", "category": "Landing Page", "status": "LIVE" },
+      { "title": "YouTube Clone", "subtitle": "Video Streaming Platformasi", "description": "Video ijro etish, qidirish, kanal sahifalari va tanish interfeysga ega keng qamrovli YouTube kloni.", "category": "Kloni", "status": "LIVE" }
+    ]
+  },
+  "finale": {
+    "terminal": "consciousness.terminal",
+    "lines": [
+      { "text": "> MEMORY_PALACE.shutdown()" },
+      { "text": "Neyron yo'llar saqlanmoqda..." },
+      { "text": "Tajribalar arxivlanmoqda..." },
+      { "text": "Ong zaxirasi tugallandi." },
+      { "text": "" },
+      { "text": "> echo 'Kashf etganingiz uchun rahmat'" }
+    ],
+    "thanks": "Kashf etganingiz uchun",
+    "thanksHighlight": "rahmat.",
+    "description": "Har bir kod qatori - fikr, har bir komponent - xotira, har bir animatsiya - hissiyot. Bu frontend dasturchining raqamli ongi.",
+    "restart": "Qaytadan Boshlash",
+    "backToLobby": "Lobbiga Qaytish",
+    "builtWith": "❤️ va ko'plab qahva bilan yaratilgan"
+  },
+  "sound": {
+    "audioSystem": "Audio Tizim",
+    "soundEffects": "Ovoz Effektlari",
+    "volume": "OVOZ"
+  },
+  "theme": {
+    "dark": "QORONG'I",
+    "light": "YORUG'",
+    "switchToDark": "Qorong'i rejimga o'tish",
+    "switchToLight": "Yorug' rejimga o'tish"
+  },
+  "language": {
+    "switchTo": "Tilni o'zgartirish",
+    "en": "English",
+    "uz": "O'zbek",
+    "ru": "Русский"
+  },
+  "misc": {
+    "errors": {
+      "typeError": "TypeError: Cannot read property 'undefined' of null",
+      "refError": "Uncaught ReferenceError: reality is not defined",
+      "memoryLeak": "Warning: Memory leak detected in component <Brain />",
+      "maxDepth": "Error: Maximum update depth exceeded",
+      "syntaxError": "SyntaxError: Unexpected token 'dreams'"
+    }
+  }
+}

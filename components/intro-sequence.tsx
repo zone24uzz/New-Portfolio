@@ -3,12 +3,14 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { soundSystem } from "@/lib/sounds"
+import { useI18n } from "@/lib/i18n/i18n-context"
 
 interface IntroSequenceProps {
   onComplete: () => void
 }
 
 export function IntroSequence({ onComplete }: IntroSequenceProps) {
+  const { t } = useI18n()
   const [stage, setStage] = useState(0)
   const [showSkip, setShowSkip] = useState(false)
 
@@ -84,7 +86,7 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
               transition={{ duration: 0.8 }}
               className="font-mono text-lg md:text-xl text-muted-foreground tracking-widest"
             >
-              <span className="text-primary">{">"}</span> INITIALIZING NEURAL INTERFACE
+              <span className="text-primary">{">"}</span> {t("intro.initializing")}
               <motion.span
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
@@ -104,7 +106,7 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
               className="space-y-4"
             >
               <h2 className="text-2xl md:text-4xl font-light text-foreground tracking-wide">
-                Entering developer memory...
+                {t("intro.entering")}
               </h2>
               <motion.div
                 className="flex justify-center gap-2"
@@ -146,9 +148,9 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
                 animate={{ letterSpacing: "-0.02em", opacity: 1 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
               >
-                <span className="text-glow-blue text-primary">FRONTEND</span>
+                <span className="text-glow-gold text-primary">{t("intro.frontend")}</span>
                 <br />
-                <span className="text-foreground">MEMORY PALACE</span>
+                <span className="text-foreground">{t("intro.memoryPalace")}</span>
               </motion.h1>
             </motion.div>
           )}
@@ -161,10 +163,10 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
               transition={{ duration: 1, ease: "easeOut" }}
               className="space-y-8"
             >
-              <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-glow-blue">
-                <span className="text-primary">FRONTEND</span>
+              <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-glow-gold">
+                <span className="text-primary">{t("intro.frontend")}</span>
                 <br />
-                <span className="text-foreground">MEMORY PALACE</span>
+                <span className="text-foreground">{t("intro.memoryPalace")}</span>
               </h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -172,7 +174,7 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
                 transition={{ delay: 0.5 }}
                 className="text-muted-foreground text-lg md:text-xl font-mono"
               >
-                A journey through digital consciousness
+                {t("intro.journey")}
               </motion.p>
             </motion.div>
           )}
@@ -189,7 +191,7 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
             onClick={handleSkip}
             className="absolute bottom-8 right-8 px-4 py-2 text-sm font-mono text-muted-foreground hover:text-foreground transition-colors border border-border/50 rounded-lg hover:border-primary/50 hover:bg-primary/5"
           >
-            Skip Intro →
+            {t("intro.skip")}
           </motion.button>
         )}
       </AnimatePresence>

@@ -5,30 +5,31 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Home, FolderOpen, Cpu, User, Mail, X, Menu, Zap, Phone, Send, Github } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "@/hooks/use-theme"
+import { useI18n } from "@/lib/i18n/i18n-context"
 
 interface NavItem {
-  id: string; label: string; href: string; icon: React.ElementType
-  glowColor: string; lightGlow: string; description: string
+  id: string; labelKey: string; href: string; icon: React.ElementType
+  glowColor: string; lightGlow: string; descKey: string
 }
 interface ContactItem {
-  id: string; label: string; value: string; href: string
+  id: string; labelKey: string; value: string; href: string
   icon: React.ElementType | string; glowColor: string; lightGlow: string; gradient: string
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { id: "home",     label: "Home",     href: "#home",     icon: Home,       glowColor: "rgba(59,130,246,0.7)",   lightGlow: "rgba(59,130,246,0.6)",   description: "Return to base"    },
-  { id: "projects", label: "Projects", href: "#projects", icon: FolderOpen, glowColor: "rgba(139,92,246,0.7)",  lightGlow: "rgba(99,102,241,0.6)",   description: "Digital creations" },
-  { id: "skills",   label: "Skills",   href: "#skills",   icon: Cpu,        glowColor: "rgba(34,211,238,0.7)",  lightGlow: "rgba(6,182,212,0.6)",    description: "Tech arsenal"      },
-  { id: "about",    label: "About",    href: "#about",    icon: User,       glowColor: "rgba(244,114,182,0.7)", lightGlow: "rgba(236,72,153,0.6)",   description: "The human behind"  },
-  { id: "contact",  label: "Contact",  href: "#contact",  icon: Mail,       glowColor: "rgba(251,191,36,0.7)",  lightGlow: "rgba(245,158,11,0.6)",   description: "Open a channel"    },
+  { id: "home",     labelKey: "nav.home",     href: "#home",     icon: Home,       glowColor: "rgba(59,130,246,0.7)",   lightGlow: "rgba(59,130,246,0.6)",   descKey: "navDesc.home"     },
+  { id: "projects", labelKey: "nav.projects", href: "#projects", icon: FolderOpen, glowColor: "rgba(139,92,246,0.7)",  lightGlow: "rgba(99,102,241,0.6)",   descKey: "navDesc.projects"  },
+  { id: "skills",   labelKey: "nav.skills",   href: "#skills",   icon: Cpu,        glowColor: "rgba(34,211,238,0.7)",  lightGlow: "rgba(6,182,212,0.6)",    descKey: "navDesc.skills"    },
+  { id: "about",    labelKey: "nav.about",    href: "#about",    icon: User,       glowColor: "rgba(244,114,182,0.7)", lightGlow: "rgba(236,72,153,0.6)",   descKey: "navDesc.about"    },
+  { id: "contact",  labelKey: "nav.contact",  href: "#contact",  icon: Mail,       glowColor: "rgba(251,191,36,0.7)",  lightGlow: "rgba(245,158,11,0.6)",   descKey: "navDesc.contact"  },
 ]
 
 const CONTACT_ITEMS: ContactItem[] = [
-  { id: "phone",     label: "Phone",     value: "+998 90 999 55 26",        href: "tel:+998909995526",              icon: Phone,       glowColor: "rgba(34,211,238,0.6)",  lightGlow: "rgba(6,182,212,0.5)",   gradient: "" },
-  { id: "gmail",     label: "Gmail",     value: "xidoyatovkomron",          href: "mailto:xidoyatovkomron@gmail.com", icon: "gmail",   glowColor: "rgba(234,67,53,0.6)",   lightGlow: "rgba(220,38,38,0.5)",   gradient: "" },
-  { id: "telegram",  label: "Telegram",  value: "@kx11dvrnc",               href: "https://t.me/kx11dvrnc",         icon: Send,        glowColor: "rgba(37,150,190,0.6)",  lightGlow: "rgba(14,165,233,0.5)",  gradient: "" },
-  { id: "instagram", label: "Instagram", value: "xidoyatov01",              href: "https://instagram.com/xidoyatov01", icon: "instagram", glowColor: "rgba(225,48,108,0.6)", lightGlow: "rgba(219,39,119,0.5)", gradient: "" },
-  { id: "github",    label: "GitHub",    value: "zone24uzz",                href: "https://github.com/zone24uzz",   icon: Github,      glowColor: "rgba(200,200,220,0.5)", lightGlow: "rgba(100,116,139,0.5)", gradient: "" },
+  { id: "phone",     labelKey: "contact.phone",     value: "+998 90 999 55 26",        href: "tel:+998909995526",              icon: Phone,       glowColor: "rgba(34,211,238,0.6)",  lightGlow: "rgba(6,182,212,0.5)",   gradient: "" },
+  { id: "gmail",     labelKey: "contact.gmail",     value: "xidoyatovkomron",          href: "mailto:xidoyatovkomron@gmail.com", icon: "gmail",   glowColor: "rgba(234,67,53,0.6)",   lightGlow: "rgba(220,38,38,0.5)",   gradient: "" },
+  { id: "telegram",  labelKey: "contact.telegram",  value: "@kx11dvrnc",               href: "https://t.me/kx11dvrnc",         icon: Send,        glowColor: "rgba(37,150,190,0.6)",  lightGlow: "rgba(14,165,233,0.5)",  gradient: "" },
+  { id: "instagram", labelKey: "contact.instagram", value: "xidoyatov01",              href: "https://instagram.com/xidoyatov01", icon: "instagram", glowColor: "rgba(225,48,108,0.6)", lightGlow: "rgba(219,39,119,0.5)", gradient: "" },
+  { id: "github",    labelKey: "contact.github",    value: "zone24uzz",                href: "https://github.com/zone24uzz",   icon: Github,      glowColor: "rgba(200,200,220,0.5)", lightGlow: "rgba(100,116,139,0.5)", gradient: "" },
 ]
 
 function GmailIcon({ size = 16 }: { size?: number }) {
@@ -106,6 +107,7 @@ function ScanLine({ isDark }: { isDark: boolean }) {
 
 // ─── Profile Card ─────────────────────────────────────────────────────────────
 function ProfileCard({ isDark }: { isDark: boolean }) {
+  const { t } = useI18n()
   const [hovered, setHovered] = useState(false)
   const ringColor    = isDark ? "rgba(139,92,246," : "rgba(99,102,241,"
   const borderColor  = isDark ? "rgba(8,8,20,0.97)" : "rgba(255,255,255,0.97)"
@@ -134,7 +136,7 @@ function ProfileCard({ isDark }: { isDark: boolean }) {
           animate={{ scale: hovered ? 1.06 : 1 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}
           style={{ background: `linear-gradient(135deg, ${ringColor}0.3), rgba(59,130,246,0.3))` }}
         >
-          <Image src="/placeholder-user.jpg" alt="Komron Xidoyatov" fill className="object-cover" priority />
+          <Image src="/placeholder-user.jpg" alt={t("profile.name")} fill className="object-cover" priority />
           <AnimatePresence>
             {hovered && (
               <motion.div className="absolute inset-0"
@@ -157,10 +159,10 @@ function ProfileCard({ isDark }: { isDark: boolean }) {
           background: isDark ? "linear-gradient(90deg, #a78bfa, #38bdf8, #a78bfa)" : "linear-gradient(90deg, #6366f1, #8b5cf6, #6366f1)",
           backgroundSize: "200%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "gradient 3s ease infinite",
         }}>
-          Komron Xidoyatov
+          {t("profile.name")}
         </motion.h2>
         <p className="text-xs font-mono mt-0.5" style={{ color: isDark ? "rgba(139,92,246,0.7)" : "rgba(99,102,241,0.8)" }}>
-          Frontend Developer
+          {t("profile.role")}
         </p>
         <div className="flex items-center justify-center gap-1.5 mt-2">
           <motion.div className="w-1.5 h-1.5 rounded-full bg-emerald-400"
@@ -168,7 +170,7 @@ function ProfileCard({ isDark }: { isDark: boolean }) {
             style={{ boxShadow: "0 0 6px rgba(52,211,153,0.8)" }}
           />
           <span className="text-xs font-mono" style={{ color: isDark ? "rgba(52,211,153,0.7)" : "rgba(16,185,129,0.8)" }}>
-            Available for work
+            {t("profile.available")}
           </span>
         </div>
       </motion.div>
@@ -180,6 +182,7 @@ function ProfileCard({ isDark }: { isDark: boolean }) {
 function NavLink({ item, index, isActive, isDark, onHover, onClick }: {
   item: NavItem; index: number; isActive: boolean; isDark: boolean; onHover: () => void; onClick: () => void
 }) {
+  const { t } = useI18n()
   const Icon = item.icon
   const [hovered, setHovered] = useState(false)
   const active = hovered || isActive
@@ -227,12 +230,12 @@ function NavLink({ item, index, isActive, isDark, onHover, onClick }: {
           animate={{ color: active ? (isDark ? "#fff" : "#1e1b4b") : isDark ? "rgba(170,170,200,0.8)" : "rgba(60,60,100,0.8)" }}
           style={isActive ? { textShadow: `0 0 10px ${glow}` } : {}}
         >
-          {item.label}
+          {t(item.labelKey)}
         </motion.span>
         <motion.span className="text-xs font-mono truncate"
           animate={{ opacity: hovered ? 1 : 0.35, color: glow.replace(/[\d.]+\)$/, "1)") }}
         >
-          {item.description}
+          {t(item.descKey)}
         </motion.span>
       </div>
       <motion.div className="ml-auto flex-shrink-0"
@@ -246,6 +249,7 @@ function NavLink({ item, index, isActive, isDark, onHover, onClick }: {
 
 // ─── Contact Card ─────────────────────────────────────────────────────────────
 function ContactCard({ item, index, isDark, onHover }: { item: ContactItem; index: number; isDark: boolean; onHover: () => void }) {
+  const { t } = useI18n()
   const [hovered, setHovered] = useState(false)
   const IconComp = typeof item.icon === "string" ? null : item.icon as React.ElementType
   const glow = isDark ? item.glowColor : item.lightGlow
@@ -286,7 +290,7 @@ function ContactCard({ item, index, isDark, onHover }: { item: ContactItem; inde
       <div className="flex flex-col min-w-0">
         <span className="text-xs font-mono uppercase tracking-widest"
           style={{ color: isDark ? "rgba(120,120,160,0.7)" : "rgba(100,100,140,0.6)" }}>
-          {item.label}
+          {t(item.labelKey)}
         </span>
         <motion.span className="text-xs font-medium truncate"
           animate={{ color: hovered ? (isDark ? "#fff" : "#1e1b4b") : isDark ? "rgba(180,180,210,0.85)" : "rgba(60,60,100,0.8)" }}
@@ -308,6 +312,7 @@ function ContactCard({ item, index, isDark, onHover }: { item: ContactItem; inde
 
 // ─── Main Drawer ───────────────────────────────────────────────────────────────
 export function CyberDrawer() {
+  const { t } = useI18n()
   const [isOpen, setIsOpen] = useState(false)
   const [activeId, setActiveId] = useState("home")
   const audioCtxRef = useRef<AudioContext | null>(null)
@@ -447,7 +452,7 @@ export function CyberDrawer() {
                 <motion.div className="flex items-center gap-2 px-2 mb-2"
                   initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.38}}>
                   <span className="text-xs font-mono tracking-[0.25em] uppercase" style={{ color: contactLabel }}>
-                    // contact
+                    {t("contact.label")}
                   </span>
                   <div className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${contactLine}, transparent)` }} />
                 </motion.div>
@@ -465,7 +470,7 @@ export function CyberDrawer() {
               initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.6}}
             >
               <p className="text-xs font-mono text-center" style={{ color: footerText }}>
-                v2.0.4 // {isDark ? "cyberpunk" : "clean"}.portfolio
+                {t("drawer.version", { theme: isDark ? t("drawer.theme_cyber") : t("drawer.theme_clean") })}
               </p>
             </motion.div>
           </motion.div>

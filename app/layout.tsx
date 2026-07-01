@@ -4,6 +4,8 @@ import { Analytics } from '@vercel/analytics/next'
 import { SessionProvider } from '@/components/analytics/session-provider'
 import { DynamicBackground } from '@/components/backgrounds/dynamic-background'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { LanguageSwitcher } from '@/components/language-switcher'
+import { I18nProvider } from '@/lib/i18n/i18n-context'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({ 
@@ -17,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: '--font-mono',
   display: 'swap',
-  preload: false, // моно-шрифт не критичен для первого рендера
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -47,20 +49,21 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark" style={{ scrollBehavior: 'smooth' }}>
+    <html lang="uz" className="dark" style={{ scrollBehavior: 'smooth' }} suppressHydrationWarning>
       <head>
-        {/* Preconnect для ускорения загрузки шрифтов */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Anti-flash: apply saved theme before first paint */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('__fmp_theme');if(!t)t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.classList.add(t);if(t==='light')document.documentElement.classList.remove('dark');}catch(e){}})()` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('__fmp_theme');var l=localStorage.getItem('__fmp_lang');if(!t)t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.classList.add(t);if(t==='light')document.documentElement.classList.remove('dark');if(l)document.documentElement.lang=l;}catch(e){}})()` }} />
       </head>
       <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased overflow-x-hidden`}>
-        <DynamicBackground />
-        <ThemeToggle />
-        <SessionProvider />
-        {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <I18nProvider>
+          <DynamicBackground />
+          <ThemeToggle />
+          <LanguageSwitcher />
+          <SessionProvider />
+          {children}
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </I18nProvider>
       </body>
     </html>
   )

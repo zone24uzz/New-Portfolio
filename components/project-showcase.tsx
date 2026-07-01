@@ -1,10 +1,9 @@
 "use client"
 
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { useState, useRef } from "react"
 import { useSound } from "@/lib/sounds"
 import { useI18n } from "@/lib/i18n/i18n-context"
-import { useTheme } from "@/hooks/use-theme"
 
 const projects = [
   {
@@ -142,7 +141,6 @@ function ProjectCard({
   onHover: (id: number | null) => void
 }) {
   const { t } = useI18n()
-  const { isDark } = useTheme()
   const cardRef = useRef<HTMLDivElement>(null)
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -202,19 +200,8 @@ function ProjectCard({
         }}
       />
 
-      {/* Card container - theme aware */}
-      <div 
-        className="relative rounded-3xl overflow-hidden"
-        style={{
-          background: isDark
-            ? "linear-gradient(135deg, rgba(20, 20, 35, 0.9) 0%, rgba(10, 10, 20, 0.95) 100%)"
-            : "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 255, 0.95) 100%)",
-          backdropFilter: "blur(20px)",
-          border: isDark
-            ? "1px solid rgba(255, 255, 255, 0.08)"
-            : "1px solid rgba(245, 158, 11, 0.15)",
-        }}
-      >
+      {/* Card container — theme-aware via CSS .project-card class */}
+      <div className="relative rounded-3xl overflow-hidden project-card">
         {/* Animated gradient overlay */}
         <motion.div
           className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 transition-opacity duration-500`}
@@ -297,7 +284,7 @@ function ProjectCard({
               <div 
                 className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center relative overflow-hidden`}
               >
-                <div className="absolute inset-0 bg-black/20" />
+                <div className="absolute inset-0 bg-black/20 dark:bg-black/20 light:bg-black/10" />
                 <span className="relative text-white font-bold text-sm">
                   {project.year.slice(2)}
                 </span>
@@ -319,7 +306,7 @@ function ProjectCard({
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 + i * 0.05 }}
                 viewport={{ once: true }}
-                className="px-3 py-1.5 rounded-lg text-xs font-mono tracking-wide border border-white/10 bg-white/5 text-foreground/80 hover:border-primary/30 hover:bg-primary/5 transition-colors"
+                className="px-3 py-1.5 rounded-lg text-xs font-mono tracking-wide border border-border bg-secondary/50 text-foreground/80 hover:border-primary/30 hover:bg-primary/5 transition-colors"
               >
                 {tech}
               </motion.span>
@@ -349,7 +336,7 @@ function ProjectCard({
 
             <MagneticButton
               href={project.github}
-              className="px-6 py-4 rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm text-foreground font-semibold hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 flex items-center gap-2"
+              className="px-6 py-4 rounded-xl border border-border bg-secondary/50 backdrop-blur-sm text-foreground font-semibold hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 flex items-center gap-2"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -360,16 +347,16 @@ function ProjectCard({
         </div>
 
         {/* Corner accents */}
-        <svg className="absolute top-4 left-4 w-6 h-6 text-white/10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <svg className="absolute top-4 left-4 w-6 h-6 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path strokeWidth="1.5" d="M4 4v6M4 4h6" />
         </svg>
-        <svg className="absolute top-4 right-4 w-6 h-6 text-white/10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <svg className="absolute top-4 right-4 w-6 h-6 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path strokeWidth="1.5" d="M20 4v6M20 4h-6" />
         </svg>
-        <svg className="absolute bottom-4 left-4 w-6 h-6 text-white/10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <svg className="absolute bottom-4 left-4 w-6 h-6 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path strokeWidth="1.5" d="M4 20v-6M4 20h6" />
         </svg>
-        <svg className="absolute bottom-4 right-4 w-6 h-6 text-white/10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <svg className="absolute bottom-4 right-4 w-6 h-6 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path strokeWidth="1.5" d="M20 20v-6M20 20h-6" />
         </svg>
 
@@ -388,7 +375,6 @@ function ProjectCard({
 export function ProjectShowcase() {
   const { t } = useI18n()
   const [hoveredId, setHoveredId] = useState<number | null>(null)
-  const { isDark } = useTheme()
 
   return (
     <section id="projects" className="relative min-h-screen py-32 px-4 overflow-hidden">

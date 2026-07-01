@@ -1,9 +1,11 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense, useMemo } from "react"
 import { soundSystem } from "@/lib/sounds"
 import { useI18n } from "@/lib/i18n/i18n-context"
+
+const LiquidChrome = lazy(() => import("@/components/liquid-chrome").then(m => ({ default: m.LiquidChrome })))
 
 interface IntroSequenceProps {
   onComplete: () => void
@@ -13,6 +15,7 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
   const { t } = useI18n()
   const [stage, setStage] = useState(0)
   const [showSkip, setShowSkip] = useState(false)
+  const chromeBaseColor = useMemo(() => [0.05, 0.05, 0.08], [])
 
   useEffect(() => {
     const skipTimer = setTimeout(() => setShowSkip(true), 1000)
@@ -42,24 +45,18 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 1.5 }}
     >
-      {/* Ambient background effects */}
+      {/* Liquid Chrome background */}
       <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[100px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 4, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/5 blur-[80px]"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-        />
+        <Suspense fallback={null}>
+          <LiquidChrome
+            baseColor={chromeBaseColor}
+            speed={0.15}
+            amplitude={0.4}
+            frequencyX={2.5}
+            frequencyY={1.5}
+            interactive={true}
+          />
+        </Suspense>
       </div>
 
       {/* Grid overlay */}

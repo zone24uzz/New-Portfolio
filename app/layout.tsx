@@ -5,6 +5,7 @@ import { SessionProvider } from '@/components/analytics/session-provider'
 import { DynamicBackground } from '@/components/backgrounds/dynamic-background'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { LanguageSwitcher } from '@/components/language-switcher'
+import { LanguageTransition } from '@/components/language-transition'
 import { I18nProvider } from '@/lib/i18n/i18n-context'
 import './globals.css'
 
@@ -61,7 +62,9 @@ export default function RootLayout({
           <ThemeToggle />
           <LanguageSwitcher />
           <SessionProvider />
-          {children}
+          <LanguageTransition>
+            {children}
+          </LanguageTransition>
           {process.env.NODE_ENV === 'production' && <Analytics />}
         </I18nProvider>
       </body>

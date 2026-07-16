@@ -8,72 +8,100 @@ import { useI18n } from "@/lib/i18n/i18n-context"
 const projects = [
   {
     id: 1,
-    title: "Mars Commerce",
-    subtitle: "Interplanetary E-Commerce",
-    description: "A futuristic e-commerce platform designed for the Martian colonization era. Features cosmic product catalogs, space-themed UI, and seamless shopping experience.",
-    url: "https://mars-market-ashen.vercel.app/",
+    title: "Keyron",
+    subtitle: "IT Development Company",
+    description: "Zamonaviy IT-kompaniya sayti. React va TailwindCSS asosida yaratilgan bo'lib, dasturiy ta'minot ishlab chiqish, veb va mobil ilovalar, jamoa haqida ma'lumot va aloqa bo'limlaridan iborat. Silliq animatsiyalar va interaktiv komponentlar bilan ishlab chiqilgan.",
+    url: "https://testkeyron-vifj.vercel.app/",
     github: "#",
-    tech: ["Next.js", "React", "Tailwind CSS", "Vercel"],
-    color: "from-orange-500 via-red-500 to-rose-600",
-    glowColor: "rgba(249, 115, 22, 0.4)",
+    tech: ["React", "Tailwind CSS", "Vite", "JavaScript"],
+    color: "from-blue-500 via-indigo-500 to-purple-600",
+    glowColor: "rgba(99, 102, 241, 0.4)",
     year: "2024",
-    category: "E-Commerce",
+    category: "IT Company",
     status: "LIVE",
   },
   {
     id: 2,
-    title: "Hamster Kombat",
-    subtitle: "Tap-to-Earn Game Clone",
-    description: "A pixel-perfect recreation of the viral Telegram game. Features tap mechanics, upgrade systems, and engaging gameplay animations.",
-    url: "https://hamster-kombat-beta.vercel.app/",
+    title: "Velocity",
+    subtitle: "Bicycle Brand Landing",
+    description: "Zamonaviy velosiped brendi uchun lending sahifasi. Velosiped dizayni, texnik xizmat, upgrade xizmatlari va afzalliklar bo'limlari bilan jihozlangan. Minimalist dizayn va silliq animatsiyalar asosida yaratilgan.",
+    url: "https://velocity-blush-gamma.vercel.app/",
     github: "#",
-    tech: ["React", "TypeScript", "CSS Animations", "Game Logic"],
-    color: "from-amber-400 via-yellow-500 to-orange-500",
-    glowColor: "rgba(245, 158, 11, 0.4)",
-    year: "2024",
-    category: "Gaming",
-    status: "LIVE",
-  },
-  {
-    id: 3,
-    title: "Hacker Portfolio",
-    subtitle: "Cyberpunk Developer Site",
-    description: "A neon-drenched, cyberpunk-inspired portfolio that showcases the dark side of web development. Terminal aesthetics meet modern design.",
-    url: "https://komton-neon.vercel.app/",
-    github: "#",
-    tech: ["Next.js", "Framer Motion", "Neon UI", "TypeScript"],
-    color: "from-green-400 via-emerald-500 to-cyan-500",
-    glowColor: "rgba(34, 197, 94, 0.4)",
-    year: "2024",
-    category: "Portfolio",
-    status: "LIVE",
-  },
-  {
-    id: 4,
-    title: "Foodi Restaurant",
-    subtitle: "Premium Restaurant Landing",
-    description: "An appetizing landing page for a modern restaurant. Features stunning food photography layouts, menu showcases, and reservation systems.",
-    url: "https://foodi-lemon-one.vercel.app/",
-    github: "#",
-    tech: ["React", "Tailwind CSS", "Responsive Design", "UI/UX"],
-    color: "from-lime-400 via-green-500 to-emerald-600",
-    glowColor: "rgba(132, 204, 22, 0.4)",
+    tech: ["HTML5", "CSS3", "JavaScript", "Responsive"],
+    color: "from-cyan-400 via-blue-500 to-indigo-600",
+    glowColor: "rgba(34, 211, 238, 0.4)",
     year: "2024",
     category: "Landing Page",
     status: "LIVE",
   },
   {
-    id: 5,
-    title: "YouTube Clone",
-    subtitle: "Video Streaming Platform",
-    description: "A comprehensive YouTube clone featuring video playback, search functionality, channel pages, and a familiar yet enhanced user interface.",
-    url: "https://you-tube-lime.vercel.app/",
+    id: 3,
+    title: "Indore Plants",
+    subtitle: "Plant Shop Landing",
+    description: "O'simliklar do'koni uchun zamonaviy lending sahifasi. TailwindCSS asosida yaratilgan bo'lib, mahsulotlar katalogi, xizmatlar, mijozlar fikrlari va aloqa bo'limlari bilan jihozlangan. To'liq moslashuvchan dizayn.",
+    url: "https://plant-website-tailwindcss-main.vercel.app/",
     github: "#",
-    tech: ["React", "YouTube API", "Responsive", "Video Player"],
-    color: "from-red-500 via-rose-500 to-pink-600",
+    tech: ["HTML5", "Tailwind CSS", "JavaScript", "Responsive"],
+    color: "from-green-400 via-emerald-500 to-teal-600",
+    glowColor: "rgba(52, 211, 153, 0.4)",
+    year: "2024",
+    category: "E-Commerce",
+    status: "LIVE",
+  },
+  {
+    id: 4,
+    title: "Fast Food Burger",
+    subtitle: "Restaurant Landing Page",
+    description: "Burgerxona uchun zamonaviy och rangli lending sahifasi. Ishtahani ochuvchi dizayn, interaktiv elementlar, menyu, mashhur taomlar va aksiyalar bilan boyitilgan. 3D-illyustratsiyalar bilan bezatilgan.",
+    url: "https://burger-landing-one.vercel.app/",
+    github: "#",
+    tech: ["HTML5", "CSS3", "JavaScript", "UI/UX"],
+    color: "from-orange-400 via-red-500 to-rose-600",
+    glowColor: "rgba(251, 146, 60, 0.4)",
+    year: "2024",
+    category: "Restaurant",
+    status: "LIVE",
+  },
+  {
+    id: 5,
+    title: "My Stack",
+    subtitle: "Full-Stack Developer Toolbox",
+    description: "Mening texnologik to'plamim. Frontend: React, Vite, JavaScript, HTML5, CSS3, Tailwind CSS. Backend: Node.js, Express.js. Database: MongoDB. Tools: Git, GitHub, Figma. Doimiy ravishda yangi texnologiyalarni o'rganib, o'z malakamni oshirib boraman.",
+    url: "#",
+    github: "#",
+    tech: ["React", "Vite", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Git", "Figma"],
+    color: "from-pink-500 via-purple-500 to-indigo-600",
+    glowColor: "rgba(168, 85, 247, 0.4)",
+    year: "2025",
+    category: "Skills",
+    status: "ALWAYS",
+  },
+  {
+    id: 6,
+    title: "Sansiro",
+    subtitle: "Fashion Clothing Store",
+    description: "Zamonaviy va foydalanuvchi uchun qulay online kiyim do'koni. Mahsulotlarni kategoriyalar bo'yicha saralash, tezkor qidiruv va filtrlar, mahsulot tafsilotlari sahifasi hamda savatcha (Shopping Cart) funksiyasi bilan jihozlangan. Mobil, planshet va kompyuter qurilmalariga moslashgan zamonaviy UI/UX dizayn.",
+    url: "https://sansiro-online-shop.vercel.app/",
+    github: "#",
+    tech: ["React", "JavaScript", "Tailwind CSS", "Next.js", "Responsive"],
+    color: "from-rose-400 via-pink-500 to-purple-600",
+    glowColor: "rgba(244, 114, 182, 0.4)",
+    year: "2024",
+    category: "E-Commerce",
+    status: "LIVE",
+  },
+  {
+    id: 7,
+    title: "ABC Auto",
+    subtitle: "Automotive Marketplace",
+    description: "Avtomobillarni ko'rish va qidirish uchun yaratilgan zamonaviy onlayn platforma. Avtomobillar katalogi, qidiruv va filtrlash funksiyalari, avtomobil tafsilotlari sahifasi hamda intuitiv navigatsiya bilan jihozlangan. Tezkor ishlash va yuqori foydalanuvchi tajribasi (UX) uchun mo'ljallangan.",
+    url: "https://abc-auto-xidoyatovvv.vercel.app/",
+    github: "#",
+    tech: ["React", "JavaScript", "Tailwind CSS", "Next.js", "Responsive"],
+    color: "from-red-500 via-rose-600 to-orange-700",
     glowColor: "rgba(239, 68, 68, 0.4)",
     year: "2024",
-    category: "Clone",
+    category: "Marketplace",
     status: "LIVE",
   },
 ]
@@ -92,16 +120,16 @@ function MagneticButton({
   const y = useMotionValue(0)
   const { playHover, playProjectSelect } = useSound()
   
-  const springX = useSpring(x, { stiffness: 300, damping: 20 })
-  const springY = useSpring(y, { stiffness: 300, damping: 20 })
+  const springX = useSpring(x, { stiffness: 250, damping: 18 })
+  const springY = useSpring(y, { stiffness: 250, damping: 18 })
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!ref.current) return
     const rect = ref.current.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
-    x.set((e.clientX - centerX) * 0.15)
-    y.set((e.clientY - centerY) * 0.15)
+    x.set((e.clientX - centerX) * 0.1)
+    y.set((e.clientY - centerY) * 0.1)
   }
 
   const handleMouseLeave = () => {
@@ -115,7 +143,7 @@ function MagneticButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={className}
+      className={`${className} cursor-pointer`}
       style={{ x: springX, y: springY }}
       onMouseMove={handleMouseMove}
       onMouseEnter={playHover}
@@ -146,8 +174,8 @@ function ProjectCard({
   const mouseY = useMotionValue(0)
   const { playCardHover } = useSound()
 
-  const rotateX = useTransform(mouseY, [-150, 150], [8, -8])
-  const rotateY = useTransform(mouseX, [-150, 150], [-8, 8])
+  const rotateX = useTransform(mouseY, [-150, 150], [6, -6])
+  const rotateY = useTransform(mouseX, [-150, 150], [-6, 6])
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!cardRef.current) return
@@ -170,7 +198,7 @@ function ProjectCard({
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => { onHover(project.id); playCardHover(); }}
       onMouseLeave={handleMouseLeave}
@@ -182,76 +210,71 @@ function ProjectCard({
       }}
       className="group relative"
     >
-      {/* Animated glow border */}
+      {/* Animated glow border — subtle */}
       <motion.div
-        className={`absolute -inset-[2px] rounded-3xl bg-gradient-to-r ${project.color} opacity-0 blur-sm transition-all duration-500`}
+        className={`absolute -inset-[1px] rounded-[20px] bg-gradient-to-r ${project.color} opacity-0 blur-[2px] transition-opacity duration-500`}
         animate={{
-          opacity: isHovered ? 0.8 : 0,
+          opacity: isHovered ? 0.4 : 0,
         }}
       />
       
-      {/* Outer glow */}
+      {/* Outer glow — barely there */}
       <motion.div
-        className="absolute -inset-4 rounded-[2rem] opacity-0 blur-2xl transition-all duration-700"
+        className="absolute -inset-2 rounded-[28px] opacity-0 blur-md transition-all duration-700"
         style={{ background: project.glowColor }}
         animate={{
-          opacity: isHovered ? 0.4 : 0,
-          scale: isHovered ? 1.05 : 1,
+          opacity: isHovered ? 0.15 : 0,
+          scale: isHovered ? 1.02 : 1,
         }}
       />
 
       {/* Card container — theme-aware via CSS .project-card class */}
-      <div className="relative rounded-3xl overflow-hidden project-card">
+      <div className={`relative overflow-hidden project-card ${index % 2 === 0 ? "rounded-2xl" : "rounded-[20px]"}`}>
         {/* Animated gradient overlay */}
         <motion.div
           className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 transition-opacity duration-500`}
           animate={{ opacity: isHovered ? 0.08 : 0 }}
         />
 
-        {/* Scanlines effect */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
-          {[...Array(30)].map((_, i) => (
+        {/* Scanlines effect — subtle */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.015]">
+          {[...Array(24)].map((_, i) => (
             <div
               key={i}
               className="w-full h-px bg-white"
-              style={{ marginTop: `${i * 3.33}%` }}
+              style={{ marginTop: `${i * 4.17}%` }}
             />
           ))}
         </div>
 
-        {/* Moving light beam */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.03) 45%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.03) 55%, transparent 60%)",
-          }}
-          animate={{
-            x: isHovered ? ["0%", "200%"] : "0%",
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: isHovered ? Infinity : 0,
-            ease: "linear",
-          }}
-        />
+        {/* Moving light beam — only on hover */}
+        {isHovered && (
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.02) 45%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.02) 55%, transparent 60%)",
+            }}
+            animate={{ x: ["0%", "200%"] }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+          />
+        )}
 
         {/* Content */}
         <div className="relative z-10 p-8">
           {/* Header */}
           <div className="flex items-start justify-between mb-6">
-            <div className="flex-1">
-              {/* Category & Status */}
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-xs font-mono text-muted-foreground tracking-widest uppercase">
-                  {project.category}
-                </span>
-                <motion.span
-                  className={`px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-gradient-to-r ${project.color} text-white`}
-                  animate={{
-                    boxShadow: isHovered 
-                      ? `0 0 20px ${project.glowColor}` 
-                      : "none",
-                  }}
+            <div className="flex-1">          {/* Category & Status */}
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[11px] font-mono text-muted-foreground tracking-[0.15em] uppercase">
+              {project.category}
+            </span>
+            <motion.span
+              className={`px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-gradient-to-r ${project.color} text-white`}
+              animate={{
+                boxShadow: isHovered 
+                  ? `0 0 12px ${project.glowColor}` 
+                  : "none",
+              }}
                 >
                   {project.status}
                 </motion.span>
@@ -259,10 +282,10 @@ function ProjectCard({
 
               {/* Title */}
               <motion.h3 
-                className="text-2xl md:text-3xl font-bold text-foreground mb-1 tracking-tight"
+                className={`font-bold text-foreground mb-0.5 tracking-tight ${index === 0 ? "text-3xl md:text-4xl" : index === 1 ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"}`}
                 animate={{
                   textShadow: isHovered 
-                    ? `0 0 30px ${project.glowColor}` 
+                    ? `0 0 20px ${project.glowColor}` 
                     : "none",
                 }}
               >
@@ -278,11 +301,14 @@ function ProjectCard({
             {/* Year badge */}
             <motion.div
               className="relative"
-              animate={{ rotate: isHovered ? 360 : 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              animate={{
+                rotate: isHovered ? [0, 15, -15, 0] : 0,
+                scale: isHovered ? 1.1 : 1,
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             >
               <div 
-                className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center relative overflow-hidden`}
+                className={`w-12 h-12 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center relative overflow-hidden`}
               >
                 <div className="absolute inset-0 bg-black/20 dark:bg-black/20 light:bg-black/10" />
                 <span className="relative text-white font-bold text-sm">
@@ -293,12 +319,12 @@ function ProjectCard({
           </div>
 
           {/* Description */}
-          <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3">
+          <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-2">
             {project.description}
           </p>
 
           {/* Tech stack */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-1.5 mb-8">
             {project.tech.map((tech, i) => (
               <motion.span
                 key={tech}
@@ -314,7 +340,7 @@ function ProjectCard({
           </div>
 
           {/* Action buttons */}
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             <MagneticButton
               href={project.url}
               className={`flex-1 relative py-4 rounded-xl bg-gradient-to-r ${project.color} text-white font-semibold text-center overflow-hidden group/btn`}
@@ -327,10 +353,10 @@ function ProjectCard({
                 {t("projects.livePreview")}
               </span>
               <motion.div
-                className="absolute inset-0 bg-white/20"
+                className="absolute inset-0 bg-white/15"
                 initial={{ x: "-100%", skewX: "-15deg" }}
                 whileHover={{ x: "100%" }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.4 }}
               />
             </MagneticButton>
 
@@ -346,26 +372,20 @@ function ProjectCard({
           </div>
         </div>
 
-        {/* Corner accents */}
-        <svg className="absolute top-4 left-4 w-6 h-6 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        {/* Corner accents — varied sizes */}
+        <svg className={`absolute top-3 ${index % 2 === 0 ? "left-3" : "right-3"} w-5 h-5 text-muted-foreground/25`} viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path strokeWidth="1.5" d="M4 4v6M4 4h6" />
         </svg>
-        <svg className="absolute top-4 right-4 w-6 h-6 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path strokeWidth="1.5" d="M20 4v6M20 4h-6" />
-        </svg>
-        <svg className="absolute bottom-4 left-4 w-6 h-6 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path strokeWidth="1.5" d="M4 20v-6M4 20h6" />
-        </svg>
-        <svg className="absolute bottom-4 right-4 w-6 h-6 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <svg className={`absolute bottom-3 ${index % 2 === 0 ? "right-3" : "left-3"} w-5 h-5 text-muted-foreground/25`} viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path strokeWidth="1.5" d="M20 20v-6M20 20h-6" />
         </svg>
 
         {/* Bottom gradient line */}
         <motion.div
-          className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${project.color}`}
+          className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r ${project.color}`}
           initial={{ width: "0%" }}
           animate={{ width: isHovered ? "100%" : "0%" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         />
       </div>
     </motion.div>
@@ -377,47 +397,24 @@ export function ProjectShowcase() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
 
   return (
-    <section id="projects" className="relative min-h-screen py-32 px-4 overflow-hidden">
-      {/* Animated background elements */}
+    <section id="projects" className="relative min-h-screen py-28 px-4 overflow-hidden">
+      {/* Animated background elements — minimal */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Central glow */}
+        {/* Single ambient glow */}
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full"
+          className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 60%)",
+            background: "radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 60%)",
           }}
           animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.5, 0.8, 0.5],
+            scale: [1, 1.15, 1],
+            opacity: [0.3, 0.5, 0.3],
           }}
-          transition={{ duration: 12, repeat: Infinity }}
+          transition={{ duration: 10, repeat: Infinity }}
         />
 
-        {/* Floating orbs */}
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-64 h-64 rounded-full"
-            style={{
-              background: `radial-gradient(circle, ${projects[i % projects.length].glowColor} 0%, transparent 70%)`,
-              left: `${15 + i * 20}%`,
-              top: `${20 + (i % 3) * 30}%`,
-            }}
-            animate={{
-              x: [0, 50, 0],
-              y: [0, -30, 0],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 8 + i * 2,
-              repeat: Infinity,
-              delay: i * 1.5,
-            }}
-          />
-        ))}
-
         {/* Grid pattern */}
-        <div className="absolute inset-0 grid-pattern opacity-30" />
+        <div className="absolute inset-0 grid-pattern opacity-20" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -431,27 +428,23 @@ export function ProjectShowcase() {
         >
           {/* Badge */}
           <motion.div
-            className="inline-flex items-center gap-3 mb-8 px-5 py-2.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm"
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
             viewport={{ once: true }}
           >
-            <motion.span
-              className="w-2 h-2 rounded-full bg-primary"
-              animate={{ 
-                boxShadow: ["0 0 0 0 rgba(59, 130, 246, 0.5)", "0 0 0 8px rgba(59, 130, 246, 0)", "0 0 0 0 rgba(59, 130, 246, 0.5)"],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-primary"
             />
-            <span className="text-sm font-mono text-primary tracking-wider">
+            <span className="text-xs font-mono text-primary tracking-wider">
               {t("projects.badge")}
             </span>
           </motion.div>
 
           {/* Title */}
           <motion.h2 
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6"
+            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -462,24 +455,19 @@ export function ProjectShowcase() {
               <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
                 {t("projects.titleHighlight")}
               </span>
-              <motion.span
-                className="absolute -inset-2 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 blur-2xl -z-10"
-                animate={{ opacity: [0.5, 0.8, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
             </span>
           </motion.h2>
 
           {/* Subtitle */}
           <motion.p
-            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
             viewport={{ once: true }}
           >
             {t("projects.description")}
-            <span className="block mt-2 text-sm text-muted-foreground/60 font-mono">
+            <span className="block mt-2 text-xs text-muted-foreground/50 font-mono">
               {t("projects.artifacts", { count: projects.length })}
             </span>
           </motion.p>
@@ -498,39 +486,15 @@ export function ProjectShowcase() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="text-center mt-20"
-        >
-          <p className="text-muted-foreground mb-6 font-mono text-sm">
+        {/* Bottom CTA — static, no animation */}
+        <div className="text-center mt-24">
+          <p className="text-muted-foreground mb-4 font-mono text-xs">
             {t("projects.moreText")}
           </p>
-          <motion.div
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-dashed border-primary/30 text-primary/60"
-            animate={{
-              borderColor: ["rgba(59, 130, 246, 0.3)", "rgba(59, 130, 246, 0.6)", "rgba(59, 130, 246, 0.3)"],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <motion.span
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              {"<"}
-            </motion.span>
-            <span className="font-mono text-sm">{t("projects.comingSoon")}</span>
-            <motion.span
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }}
-            >
-              {"/>"}
-            </motion.span>
-          </motion.div>
-        </motion.div>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-dashed border-primary/20 text-primary/40 text-xs font-mono">
+            {"<"} {t("projects.comingSoon")} {"/>"}
+          </div>
+        </div>
       </div>
     </section>
   )

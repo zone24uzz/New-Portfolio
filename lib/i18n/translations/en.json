@@ -66,6 +66,25 @@
     ],
     "button": "Explore All Experiments"
   },
+  "about": {
+    "badge": "// ABOUT.tsx",
+    "title": "About",
+    "titleHighlight": "Me",
+    "description": "Frontend developer with a passion for building clean, fast, and accessible web experiences. I turn complex problems into elegant interfaces.",
+    "location": "Uzbekistan",
+    "experience": "3+ years",
+    "startYear": "Since 2019",
+    "bio": "I build web apps with React and Next.js. I care about clean code, performance, and getting the details right. Based in Uzbekistan, I work on projects that solve real problems — from e-commerce platforms to interactive brand experiences.",
+    "toolstack": "// toolstack",
+    "skill1Title": "Frontend Development",
+    "skill1Desc": "React, Next.js, TypeScript, Tailwind CSS. Building responsive interfaces that feel native.",
+    "skill2Title": "UI/UX Design",
+    "skill2Desc": "Figma to code. Clean layouts, thoughtful interactions, pixel-perfect execution.",
+    "skill3Title": "Backend & Database",
+    "skill3Desc": "Node.js, Express, MongoDB. REST APIs and server-side logic.",
+    "skill4Title": "Version Control & DevOps",
+    "skill4Desc": "Git, GitHub, deployment workflows. Clean code from commit to production."
+  },
   "bug": {
     "errorBadge": "// ERROR: BUG_DIMENSION.tsx",
     "repairBadge": "// REPAIRING...",
@@ -96,7 +115,7 @@
       { "title": "Time Capsule", "description": "Version control visualization through time", "tags": ["Git", "Visualization", "History"] },
       { "title": "Emotion Engine", "description": "Interfaces that adapt to user emotional states", "tags": ["Emotion AI", "Adaptive", "UX"] }
     ],
-    "button": "✨ Generate New Concept"
+    "button": "Generate New Concept"
   },
   "timeline": {
     "badge": "// TIME_TUNNEL.tsx",
@@ -123,11 +142,12 @@
     "moreText": "More artifacts are being forged in the digital void...",
     "comingSoon": "coming_soon",
     "items": [
-      { "title": "Mars Commerce", "subtitle": "Interplanetary E-Commerce", "description": "A futuristic e-commerce platform designed for the Martian colonization era. Features cosmic product catalogs, space-themed UI, and seamless shopping experience.", "category": "E-Commerce", "status": "LIVE" },
-      { "title": "Hamster Kombat", "subtitle": "Tap-to-Earn Game Clone", "description": "A pixel-perfect recreation of the viral Telegram game. Features tap mechanics, upgrade systems, and engaging gameplay animations.", "category": "Gaming", "status": "LIVE" },
-      { "title": "Hacker Portfolio", "subtitle": "Cyberpunk Developer Site", "description": "A neon-drenched, cyberpunk-inspired portfolio that showcases the dark side of web development. Terminal aesthetics meet modern design.", "category": "Portfolio", "status": "LIVE" },
-      { "title": "Foodi Restaurant", "subtitle": "Premium Restaurant Landing", "description": "An appetizing landing page for a modern restaurant. Features stunning food photography layouts, menu showcases, and reservation systems.", "category": "Landing Page", "status": "LIVE" },
-      { "title": "YouTube Clone", "subtitle": "Video Streaming Platform", "description": "A comprehensive YouTube clone featuring video playback, search functionality, channel pages, and a familiar yet enhanced user interface.", "category": "Clone", "status": "LIVE" }
+      { "title": "Keyron", "subtitle": "IT Development Company", "description": "A modern IT company website built with React and TailwindCSS. Features software development services, web and mobile apps, team info, portfolio, and contact sections with smooth animations.", "category": "IT Company", "status": "LIVE" },
+      { "title": "Velocity", "subtitle": "Bicycle Brand Landing", "description": "A modern bicycle brand landing page with smooth animations, interactive elements, and minimalist design. Features bike showcases, maintenance services, upgrades, and benefits sections.", "category": "Landing Page", "status": "LIVE" },
+      { "title": "Indore Plants", "subtitle": "Plant Shop Landing", "description": "A modern plant shop landing page built with TailwindCSS. Features product catalog, services, customer reviews, and contact sections with fully responsive design.", "category": "E-Commerce", "status": "LIVE" },
+      { "title": "Fast Food Burger", "subtitle": "Restaurant Landing Page", "description": "A modern burger restaurant landing page with an appetizing light design. Features menu, popular dishes, promotions, and contact info with 3D illustrations and interactive elements.", "category": "Restaurant", "status": "LIVE" },
+      { "title": "Sansiro", "subtitle": "Fashion Clothing Store", "description": "A modern and user-friendly online clothing store. Features product categorization, quick search and filters, product detail pages, and a shopping cart system with fully responsive UI/UX design.", "category": "E-Commerce", "status": "LIVE" },
+      { "title": "ABC Auto", "subtitle": "Automotive Marketplace", "description": "A modern online platform for browsing and searching cars. Features car catalog, search and filtering, vehicle detail pages, and intuitive navigation for fast performance and great UX.", "category": "Marketplace", "status": "LIVE" }
     ]
   },
   "finale": {
@@ -145,7 +165,7 @@
     "description": "Every line of code is a thought, every component a memory, every animation a feeling. This is the digital consciousness of a frontend developer.",
     "restart": "Restart Experience",
     "backToLobby": "Back to Lobby",
-    "builtWith": "Built with ❤️ and countless cups of coffee"
+    "builtWith": "Built with passion and countless cups of coffee"
   },
   "sound": {
     "audioSystem": "Audio System",

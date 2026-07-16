@@ -1,33 +1,41 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useScroll } from "framer-motion"
 import { useState, useEffect } from "react"
 import { useSound } from "@/lib/sounds"
 import { useI18n } from "@/lib/i18n/i18n-context"
+import { LayoutDashboard, FlaskConical, Bug, Lightbulb, History, FolderKanban, Star, ChevronUp } from "lucide-react"
+
+const iconMap: Record<string, React.ElementType> = {
+  lobby: LayoutDashboard,
+  experiments: FlaskConical,
+  "bug-dimension": Bug,
+  ideas: Lightbulb,
+  timeline: History,
+  projects: FolderKanban,
+  finale: Star,
+}
 
 const navItems = [
-  { id: "lobby", key: "nav.lobby", icon: "◈" },
-  { id: "experiments", key: "nav.experiments", icon: "⬡" },
-  { id: "bug-dimension", key: "nav.bugDimension", icon: "⚠" },
-  { id: "ideas", key: "nav.ideas", icon: "✧" },
-  { id: "timeline", key: "nav.timeline", icon: "◎" },
-  { id: "projects", key: "nav.projects", icon: "◇" },
-  { id: "finale", key: "nav.finale", icon: "★" },
+  { id: "lobby", key: "nav.lobby" },
+  { id: "experiments", key: "nav.experiments" },
+  { id: "bug-dimension", key: "nav.bugDimension" },
+  { id: "ideas", key: "nav.ideas" },
+  { id: "timeline", key: "nav.timeline" },
+  { id: "projects", key: "nav.projects" },
+  { id: "finale", key: "nav.finale" },
 ]
 
 export function Navigation() {
   const { t } = useI18n()
   const [activeSection, setActiveSection] = useState("lobby")
   const [isExpanded, setIsExpanded] = useState(false)
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const { scrollYProgress } = useScroll()
   const { playNavClick, playHover, playSwoosh } = useSound()
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      setScrollProgress(scrollTop / docHeight)
-
       // Find active section
       const sections = navItems.map((item) => document.getElementById(item.id))
       const scrollPosition = scrollTop + window.innerHeight / 3
@@ -41,7 +49,7 @@ export function Navigation() {
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -63,8 +71,8 @@ export function Navigation() {
     <>
       {/* Progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-0.5 bg-primary z-50 origin-left"
-        style={{ scaleX: scrollProgress }}
+        className="fixed top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-accent z-50 origin-left"
+        style={{ scaleX: scrollYProgress }}
       />
 
       {/* Desktop navigation */}
@@ -81,7 +89,7 @@ export function Navigation() {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 onMouseEnter={playHover}
-                className={`group relative w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                className={`group relative w-10 h-10 rounded-xl flex items-center justify-center transition-colors cursor-pointer ${
                   activeSection === item.id
                     ? "bg-primary text-primary-foreground"
                     : "hover:bg-primary/10 text-muted-foreground hover:text-foreground"
@@ -89,7 +97,7 @@ export function Navigation() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="text-lg">{item.icon}</span>
+                {(() => { const Icon = iconMap[item.id]; return <Icon size={18} />; })()}
 
                 {/* Tooltip */}
                 <div className="absolute left-full ml-3 px-3 py-1.5 rounded-lg glass-strong text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
@@ -132,14 +140,14 @@ export function Navigation() {
                     <motion.button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className={`flex flex-col items-center gap-1 p-3 rounded-xl transition-colors ${
+                      className={`flex flex-col items-center gap-1 p-3 rounded-xl transition-colors cursor-pointer ${
                         activeSection === item.id
                           ? "bg-primary text-primary-foreground"
                           : "hover:bg-primary/10 text-muted-foreground"
                       }`}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <span className="text-lg">{item.icon}</span>
+                      {(() => { const Icon = iconMap[item.id]; return <Icon size={16} />; })()}
                       <span className="text-xs font-medium truncate w-full text-center">
                         {t(item.key)}
                       </span>
@@ -153,12 +161,10 @@ export function Navigation() {
           {/* Toggle bar */}
           <button
             onClick={handleToggleExpand}
-            className="w-full p-4 flex items-center justify-between"
+            className="w-full p-4 flex items-center justify-between cursor-pointer"
           >
             <div className="flex items-center gap-3">
-              <span className="text-lg">
-                {navItems.find((i) => i.id === activeSection)?.icon}
-              </span>
+              {(() => { const Icon = iconMap[activeSection]; return Icon ? <Icon size={18} /> : null; })()}
               <span className="font-medium text-foreground">
                 {t(navItems.find((i) => i.id === activeSection)?.key || 'nav.lobby')}
               </span>
@@ -167,7 +173,7 @@ export function Navigation() {
               animate={{ rotate: isExpanded ? 180 : 0 }}
               className="text-muted-foreground"
             >
-              ▲
+              <ChevronUp size={16} />
             </motion.span>
           </button>
         </div>

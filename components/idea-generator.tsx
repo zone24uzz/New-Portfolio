@@ -199,31 +199,13 @@ function ConceptCard({
 export function IdeaGenerator() {
   const { t } = useI18n()
   const [activeId, setActiveId] = useState<number | null>(1)
-  const { playHologram, playHover } = useSound()
+  const { playHologram } = useSound()
 
   return (
     <section id="ideas" className="relative min-h-screen py-32 px-4">
-      {/* Background particles */}
+      {/* Background — simple static */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full bg-primary/30"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -50, 0],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 4,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
+        <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
@@ -234,21 +216,15 @@ export function IdeaGenerator() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.div
-            className="inline-block mb-6 px-4 py-2 rounded-full glass border border-amber-400/20"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
-            viewport={{ once: true }}
-          >
-            <span className="text-sm font-mono text-amber-400">
+          <div className="inline-block mb-6 px-4 py-2 rounded-full glass border border-amber-400/20">
+            <span className="text-xs font-mono text-amber-400">
               {t("ideas.badge")}
             </span>
-          </motion.div>
+          </div>
 
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
             <span className="text-foreground">{t("ideas.title")}</span>{" "}
-            <span className="text-amber-400 text-glow-gold">{t("ideas.titleHighlight")}</span>{" "}
+            <span className="text-amber-400">{t("ideas.titleHighlight")}</span>{" "}
             <span className="text-foreground">{t("ideas.titleEnd")}</span>
           </h2>
 
@@ -268,34 +244,11 @@ export function IdeaGenerator() {
               concept={concept}
               isActive={activeId === concept.id}
               onClick={() => { playHologram(); setActiveId(activeId === concept.id ? null : concept.id); }}
-                onMouseEnter={playHover}
             />
           ))}
         </motion.div>
 
-        {/* Generate new idea button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-center mt-12"
-        >
-          <motion.button
-            className="group relative px-8 py-4 rounded-2xl glass border border-amber-400/30 overflow-hidden"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-primary/20"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.5 }}
-            />
-            <span className="relative z-10 font-medium text-amber-400 group-hover:text-foreground transition-colors">
-              {t("ideas.button")}
-            </span>
-          </motion.button>
-        </motion.div>
+
       </div>
     </section>
   )

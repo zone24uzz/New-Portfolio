@@ -1,9 +1,10 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useSound } from "@/lib/sounds"
 import { useI18n } from "@/lib/i18n/i18n-context"
+import { X, Check } from "lucide-react"
 
 const consoleErrorKeys = [
   "misc.errors.typeError",
@@ -15,8 +16,8 @@ const consoleErrorKeys = [
 
 const brokenElements = [
   { text: "div", broken: "d̷̰̍i̸̱͝v̶̱̈́" },
-  { text: "button", broken: "b̴͎̽ụ̶̓ṭ̸̛t̵̲̎o̶͖͝n̵̰̕" },
-  { text: "component", broken: "c̸̣̈́o̵͓̒m̷̱̌p̴̱̾o̷͙̍n̷̨̎e̸̝̐n̶̰̊t̶̝̀" },
+  { text: "button", broken: "b̴͎̽u̶̓t̸̛t̵̲̎o̶͖͝n̵̰̕" },
+  { text: "component", broken: "c̸̣̈o̵͓̒m̷̱̌p̴̱̾o̷͙̍n̶̰̊t̶̝" },
 ]
 
 function GlitchText({ children }: { children: string }) {
@@ -75,7 +76,7 @@ function ConsoleOverlay({ errors }: { errors: string[] }) {
             transition={{ delay: i * 0.2 }}
             className="flex items-start gap-2 text-destructive/80"
           >
-            <span className="text-destructive">✕</span>
+            <X size={14} className="text-destructive shrink-0 mt-0.5" />
             <span>{error}</span>
           </motion.div>
         ))}
@@ -136,29 +137,25 @@ export function BugDimension() {
   const [hasTriggered, setHasTriggered] = useState(false)
   const { playGlitch, playBeep, playPing } = useSound()
   
-  const handleEnterView = () => {
-  if (hasTriggered) return
-  playGlitch()
+  const handleEnterView = useCallback(() => {
+    if (hasTriggered) return
+    playGlitch()
     setHasTriggered(true)
-    
-    // Auto-trigger fixing after 4 seconds in broken state
-    setTimeout(() => {
-setPhase("fixing"); playBeep()
-    }, 4000)
-  }
+    setTimeout(() => { setPhase("fixing"); playBeep() }, 4000)
+  }, [hasTriggered, playGlitch, playBeep])
 
-  const handleFixComplete = () => {
+  const handleFixComplete = useCallback(() => {
     setPhase("fixed"); playPing()
-  }
+  }, [playPing])
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setPhase("broken")
     setHasTriggered(false)
     setTimeout(() => {
       setHasTriggered(true)
       setTimeout(() => setPhase("fixing"), 4000)
     }, 100)
-  }
+  }, [])
 
   return (
     <section id="bug-dimension" className="relative min-h-screen py-32 px-4 overflow-hidden">
@@ -248,7 +245,7 @@ setPhase("fixing"); playBeep()
             </span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
             {phase === "broken" ? (
               <>
                 <GlitchText>{t("bug.title")}</GlitchText>{" "}
@@ -264,7 +261,7 @@ setPhase("fixing"); playBeep()
             )}
           </h2>
 
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {phase === "broken"
               ? t("bug.descBroken")
               : phase === "fixing"
@@ -274,7 +271,7 @@ setPhase("fixing"); playBeep()
         </motion.div>
 
         {/* Main content area */}
-        <div className="relative min-h-[400px] glass-strong rounded-3xl overflow-hidden border border-border/50">
+        <div className="relative min-h-[400px] glass-strong rounded-2xl overflow-hidden border border-border/50">
           <AnimatePresence mode="wait">
             {phase === "broken" && (
               <motion.div
@@ -296,9 +293,9 @@ setPhase("fixing"); playBeep()
                         left: `${10 + i * 20}%`,
                       }}
                       animate={{
-                        x: [0, Math.random() * 10 - 5, 0],
-                        y: [0, Math.random() * 10 - 5, 0],
-                        rotate: [0, Math.random() * 5 - 2.5, 0],
+                        x: [0, 3, -2, 0],
+                        y: [0, -2, 3, 0],
+                        rotate: [0, 2, -1, 0],
                       }}
                       transition={{
                         duration: 0.3,
@@ -333,7 +330,7 @@ setPhase("fixing"); playBeep()
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", delay: 0.2 }}
                   >
-                    <span className="text-3xl text-white">✓</span>
+                    <Check size={28} className="text-white" />
                   </motion.div>
                   <div className="space-y-2">
                     <h3 className="text-2xl font-bold text-foreground">
@@ -345,7 +342,7 @@ setPhase("fixing"); playBeep()
                   </div>
                   <motion.button
                     onClick={handleReset}
-                    className="px-6 py-3 rounded-xl glass border border-primary/30 text-primary font-medium hover:bg-primary/10 transition-colors"
+                    className="px-6 py-3 rounded-xl glass border border-primary/30 text-primary font-medium hover:bg-primary/10 transition-colors cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >

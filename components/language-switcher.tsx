@@ -2,24 +2,33 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
-import { Languages } from "lucide-react"
+import { Globe } from "lucide-react"
 import { useI18n, type Language } from "@/lib/i18n/i18n-context"
 import { useTheme } from "@/hooks/use-theme"
 
-const languages: { code: Language; label: string; flag: string }[] = [
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "uz", label: "O'zbek", flag: "🇺🇿" },
-  { code: "ru", label: "Русский", flag: "🇷🇺" },
+const languages: { code: Language; label: string; short: string }[] = [
+  { code: "en", label: "English", short: "EN" },
+  { code: "uz", label: "O'zbek", short: "UZ" },
+  { code: "ru", label: "Русский", short: "RU" },
 ]
 
 export function LanguageSwitcher() {
   const { language, setLanguage, mounted } = useI18n()
   const { isDark } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   if (!mounted) return null
 
   const current = languages.find((l) => l.code === language) || languages[1]
+
+  const handleLanguageChange = (lang: Language) => {
+    if (lang === language) return
+    setIsTransitioning(true)
+    setLanguage(lang)
+    setIsOpen(false)
+    setTimeout(() => setIsTransitioning(false), 400)
+  }
 
   const triggerBg = isDark ? "rgba(10,10,20,0.85)" : "rgba(255,255,255,0.88)"
   const drawerBg = isDark
@@ -35,7 +44,7 @@ export function LanguageSwitcher() {
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Switch language"
-        className="flex items-center gap-1.5 px-2.5 py-2 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-amber-400 select-none"
+        className="flex items-center gap-1.5 px-2.5 py-2 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-amber-400 select-none cursor-pointer"
         style={{
           background: triggerBg,
           border: "1px solid rgba(245,158,11,0.35)",
@@ -46,8 +55,22 @@ export function LanguageSwitcher() {
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
-        <Languages size={14} className="text-amber-500" />
-        <span className="text-xs font-medium text-amber-600/90">{current.flag}</span>
+        <motion.span
+          animate={{ rotate: isTransitioning ? 360 : 0 }}
+          transition={{ duration: 0.4, ease: [0.0, 0.0, 0.2, 1.0] }}
+          className="inline-flex"
+        >
+          <Globe size={14} className="text-amber-500" />
+        </motion.span>
+        <motion.span
+          key={language}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2, ease: [0.0, 0.0, 0.2, 1.0] }}
+          className="text-[10px] font-bold text-amber-600/90 tracking-wider"
+        >
+          {current.short}
+        </motion.span>
       </motion.button>
 
       <AnimatePresence>
@@ -77,18 +100,15 @@ export function LanguageSwitcher() {
                 {languages.map((lang) => (
                   <motion.button
                     key={lang.code}
-                    onClick={() => {
-                      setLanguage(lang.code)
-                      setIsOpen(false)
-                    }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
+                    onClick={() => handleLanguageChange(lang.code)}
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
                       language === lang.code
                         ? "bg-amber-500/15 text-amber-600 font-semibold"
                         : "text-foreground/70 hover:text-foreground hover:bg-amber-500/8"
                     }`}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <span className="text-base">{lang.flag}</span>
+                    <span className="text-[10px] font-bold tracking-widest text-amber-500/70 w-6">{lang.short}</span>
                     <span>{lang.label}</span>
                     {language === lang.code && (
                       <motion.div

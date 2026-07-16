@@ -1,172 +1,77 @@
 "use client"
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { useRef, useState } from "react"
-import { useSound } from "@/lib/sounds"
+import { motion } from "framer-motion"
+import Image from "next/image"
 import { useI18n } from "@/lib/i18n/i18n-context"
+import { useSound } from "@/lib/sounds"
+import { Code2, Palette, Database, GitBranch, Globe, Smartphone, Zap, Terminal, MapPin, Calendar, Briefcase } from "lucide-react"
 
-const experiments = [
+const skills = [
   {
-    title: "Liquid Morphism",
-    description: "Fluid interfaces that respond to your presence",
-    gradient: "from-blue-500 via-cyan-400 to-emerald-400",
+    titleKey: "about.skill1Title",
+    descKey: "about.skill1Desc",
+    icon: Code2,
+    gradient: "from-blue-500 via-indigo-400 to-purple-500",
   },
   {
-    title: "Magnetic Fields",
-    description: "Elements that gravitate towards curiosity",
-    gradient: "from-violet-500 via-purple-400 to-pink-400",
+    titleKey: "about.skill2Title",
+    descKey: "about.skill2Desc",
+    icon: Palette,
+    gradient: "from-rose-400 via-pink-500 to-purple-500",
   },
   {
-    title: "Neural Patterns",
-    description: "AI-driven visual systems that learn and adapt",
-    gradient: "from-amber-500 via-orange-400 to-red-400",
+    titleKey: "about.skill3Title",
+    descKey: "about.skill3Desc",
+    icon: Database,
+    gradient: "from-emerald-400 via-teal-500 to-cyan-600",
   },
   {
-    title: "Quantum States",
-    description: "Components existing in multiple states simultaneously",
-    gradient: "from-cyan-500 via-blue-400 to-indigo-400",
+    titleKey: "about.skill4Title",
+    descKey: "about.skill4Desc",
+    icon: GitBranch,
+    gradient: "from-orange-400 via-red-500 to-rose-600",
   },
 ]
 
-function LiquidButton({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLButtonElement>(null)
-  const [isHovered, setIsHovered] = useState(false)
-  const { playHover, playClick } = useSound()
+const tools = [
+  { name: "React", icon: Code2 },
+  { name: "Next.js", icon: Globe },
+  { name: "TypeScript", icon: Terminal },
+  { name: "Tailwind", icon: Palette },
+  { name: "Node.js", icon: Zap },
+  { name: "MongoDB", icon: Database },
+  { name: "Git", icon: GitBranch },
+  { name: "Figma", icon: Smartphone },
+]
 
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-
-  const mouseXSpring = useSpring(x, { stiffness: 500, damping: 50 })
-  const mouseYSpring = useSpring(y, { stiffness: 500, damping: 50 })
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return
-    const rect = ref.current.getBoundingClientRect()
-    x.set(e.clientX - rect.left - rect.width / 2)
-    y.set(e.clientY - rect.top - rect.height / 2)
-  }
-
-  const translateX = useTransform(mouseXSpring, [-100, 100], [-10, 10])
-  const translateY = useTransform(mouseYSpring, [-100, 100], [-10, 10])
-
-  return (
-    <motion.button
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => {
-        setIsHovered(false)
-        x.set(0)
-        y.set(0)
-      }}
-      style={{
-        x: translateX,
-        y: translateY,
-      }}
-      className="relative px-8 py-4 rounded-2xl font-medium overflow-hidden group"
-    >
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%]"
-        animate={{
-          backgroundPosition: isHovered ? ["0% 0%", "100% 0%"] : "0% 0%",
-        }}
-        transition={{ duration: 1.5, repeat: isHovered ? Infinity : 0 }}
-      />
-      <motion.div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{
-          background:
-            "radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.2), transparent 50%)",
-        }}
-      />
-      <span className="relative z-10 text-white">{children}</span>
-    </motion.button>
-  )
-}
-
-function MagneticCard({
-  experiment,
-  index,
-}: {
-  experiment: (typeof experiments)[0]
-  index: number
-}) {
-  const ref = useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const rotateX = useTransform(y, [-100, 100], [10, -10])
-  const rotateY = useTransform(x, [-100, 100], [-10, 10])
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return
-    const rect = ref.current.getBoundingClientRect()
-    const centerX = rect.left + rect.width / 2
-    const centerY = rect.top + rect.height / 2
-    x.set(e.clientX - centerX)
-    y.set(e.clientY - centerY)
-  }
-
-  const handleMouseLeave = () => {
-    x.set(0)
-    y.set(0)
-  }
+function SkillCard({ skill, index }: { skill: (typeof skills)[0]; index: number }) {
+  const { t } = useI18n()
+  const Icon = skill.icon
 
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className="relative group cursor-pointer"
+      transition={{ delay: index * 0.08, duration: 0.4 }}
+      className="relative group"
     >
-      <motion.div
-        className="glass-strong rounded-3xl p-8 h-full border border-primary/10 relative overflow-hidden"
-        whileHover={{ scale: 1.02 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      >
-        {/* Gradient background */}
-        <motion.div
-          className={`absolute inset-0 bg-gradient-to-br ${experiment.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-        />
-
-        {/* Content */}
-        <div className="relative z-10" style={{ transform: "translateZ(40px)" }}>
-          <motion.div
-            className={`w-12 h-12 rounded-xl bg-gradient-to-br ${experiment.gradient} mb-6 flex items-center justify-center`}
-            whileHover={{ rotate: 180 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="text-2xl text-white">✦</span>
-          </motion.div>
-
-          <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
-            {experiment.title}
+      <div className={`glass-strong p-6 h-full border border-primary/10 relative overflow-hidden transition-all duration-300 hover:border-primary/30 ${
+        index === 0 ? "rounded-2xl" : index === 1 ? "rounded-[18px]" : index === 2 ? "rounded-xl" : "rounded-[16px]"
+      }`}>
+        <div className={`absolute inset-0 bg-gradient-to-br ${skill.gradient} opacity-0 group-hover:opacity-[0.06] transition-opacity duration-500`} />
+        <div className="relative z-10">
+          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${skill.gradient} mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
+            <Icon size={18} className="text-white" />
+          </div>
+          <h3 className="text-base font-bold mb-1.5 text-foreground group-hover:text-primary transition-colors duration-300">
+            {t(skill.titleKey)}
           </h3>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            {experiment.description}
+            {t(skill.descKey)}
           </p>
         </div>
-
-        {/* Hover glow */}
-        <motion.div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style={{
-            background:
-              "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1), transparent 70%)",
-          }}
-        />
-      </motion.div>
-
-      {/* Card reflection */}
-      <div className="absolute -bottom-4 left-4 right-4 h-8 bg-gradient-to-b from-primary/5 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+      </div>
     </motion.div>
   )
 }
@@ -174,73 +79,134 @@ function MagneticCard({
 export function ExperimentRoom() {
   const { t } = useI18n()
   return (
-    <section id="experiments" className="relative min-h-screen py-32 px-4">
-      {/* Background elements */}
+    <section id="experiments" className="relative min-h-screen py-28 px-4">
+      {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-accent/5 blur-[100px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] rounded-full bg-primary/5 blur-[80px]"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 6, repeat: Infinity }}
-        />
+        <div className="absolute top-1/3 left-1/4 w-[350px] h-[350px] rounded-full bg-accent/5 blur-[80px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[250px] h-[250px] rounded-full bg-primary/5 blur-[60px]" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
         >
-          <motion.div
-            className="inline-block mb-6 px-4 py-2 rounded-full glass border border-accent/20"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
-            viewport={{ once: true }}
-          >
-            <span className="text-sm font-mono text-accent">
-              {t("experiments.badge")}
-            </span>
-          </motion.div>
+          <div className="inline-block mb-5 px-3 py-1.5 rounded-full glass border border-accent/20">
+            <span className="text-xs font-mono text-accent">{t("about.badge")}</span>
+          </div>
 
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-            <span className="text-foreground">{t("experiments.title")}</span>{" "}
-            <span className="text-accent">{t("experiments.titleHighlight")}</span>{" "}
-            <span className="text-foreground">{t("experiments.titleEnd")}</span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+            <span className="text-foreground">{t("about.title")}</span>{" "}
+            <span className="text-accent">{t("about.titleHighlight")}</span>
           </h2>
 
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t("experiments.description")}
+          <p className="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            {t("about.description")}
           </p>
         </motion.div>
 
-        {/* Experiment cards */}
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
-          {experiments.map((experiment, i) => (
-            <MagneticCard key={experiment.title} experiment={experiment} index={i} />
-          ))}
-        </div>
-
-        {/* Interactive demo button */}
+        {/* Profile card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex justify-center"
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="max-w-3xl mx-auto mb-16"
         >
-          <LiquidButton>{t("experiments.button")}</LiquidButton>
+          <div className="glass-strong rounded-2xl p-8 md:p-10 border border-primary/10">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+              {/* Photo */}
+              <div className="relative flex-shrink-0">
+                <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-primary/20">
+                  <Image
+                    src="/placeholder-user.jpg"
+                    alt={t("profile.name")}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                {/* Decorative ring */}
+                <div className="absolute -inset-2 rounded-2xl border border-primary/10 -z-10" />
+              </div>
+
+              {/* Info */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-1">
+                  {t("profile.name")}
+                </h3>
+                <p className="text-sm font-medium text-accent mb-4">
+                  {t("profile.role")}
+                </p>
+
+                <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-5">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/5 border border-primary/10 text-xs text-muted-foreground font-mono">
+                    <MapPin size={12} className="text-primary/60" />
+                    {t("about.location")}
+                  </div>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/5 border border-primary/10 text-xs text-muted-foreground font-mono">
+                    <Briefcase size={12} className="text-primary/60" />
+                    {t("about.experience")}
+                  </div>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/5 border border-primary/10 text-xs text-muted-foreground font-mono">
+                    <Calendar size={12} className="text-primary/60" />
+                    {t("about.startYear")}
+                  </div>
+                </div>
+
+                <p className="text-foreground/70 leading-relaxed text-sm">
+                  {t("about.bio")}
+                </p>
+
+                {/* Available badge */}
+                <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span className="text-xs font-mono text-emerald-400">{t("profile.available")}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Skills grid */}
+        <div className="grid md:grid-cols-2 gap-4 mb-16">
+          {skills.map((skill, i) => (
+            <SkillCard key={i} skill={skill} index={i} />
+          ))}
+        </div>
+
+        {/* Tool stack */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <h3 className="text-center text-sm font-mono text-muted-foreground/60 mb-6 uppercase tracking-widest">
+            {t("about.toolstack")}
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {tools.map((tool, i) => {
+              const Icon = tool.icon
+              return (
+                <motion.div
+                  key={tool.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.04, duration: 0.3 }}
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl border border-primary/10 bg-secondary/30 text-foreground/70 text-xs font-mono"
+                >
+                  <Icon size={14} className="text-primary/60" />
+                  {tool.name}
+                </motion.div>
+              )
+            })}
+          </div>
         </motion.div>
       </div>
     </section>

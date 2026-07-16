@@ -48,7 +48,7 @@
   "lobby": {
     "badge": "// MEMORY_LOBBY.tsx",
     "title": "Xush kelibsiz",
-    "titleHighlight": "Xotira Saroyiga",
+    "titleHighlight": "Xotira Saroyi",
     "description": "Kod san'atga aylanadigan va g'oyalar raqamli tajribalarga aylanadigan makon. Dasturchi ongining qismlarini kashf eting.",
     "explore": "KASHF ET"
   },
@@ -65,6 +65,25 @@
       { "title": "Kvant Holatlar", "description": "Bir vaqtning o'zida bir nechta holatlarda mavjud komponentlar" }
     ],
     "button": "Barcha Tajribalarni Ko'rish"
+  },
+  "about": {
+    "badge": "// ABOUT.tsx",
+    "title": "Men",
+    "titleHighlight": "Haqimda",
+    "description": "Frontend dasturchi. Toza, tez va qulay veb tajribalarni yaratishga ishtiyoqliman. Murakkab muammolarni chiroyli interfeyslarga aylantiraman.",
+    "location": "O'zbekiston",
+    "experience": "3+ yil",
+    "startYear": "2019 dan",
+    "bio": "React va Next.js bilan veb ilovalar yarataman. Toza kod, tezlik va detallarga e'tibor berish men uchun muhim. O'zbekistonda faoliyat yuritib, e-commerce platformalardan tortib interaktiv brand tajribalargacha bo'lgan loyihalar ustida ishlayman.",
+    "toolstack": "// texnologiyalar",
+    "skill1Title": "Frontend Development",
+    "skill1Desc": "React, Next.js, TypeScript, Tailwind CSS. Tabiiy his qiladigan responsive interfeyslar yaratish.",
+    "skill2Title": "UI/UX Dizayn",
+    "skill2Desc": "Figma dan kodga. Toza layout, puxta interaksiyalar, piksel aniqligida bajarish.",
+    "skill3Title": "Backend va Ma'lumotlar",
+    "skill3Desc": "Node.js, Express, MongoDB. REST API va server tarafidagi mantiq.",
+    "skill4Title": "Versiya Nazorati va DevOps",
+    "skill4Desc": "Git, GitHub, deployment jarayonlari. Commit dan production gacha toza kod."
   },
   "bug": {
     "errorBadge": "// ERROR: BUG_DIMENSION.tsx",
@@ -96,7 +115,7 @@
       { "title": "Vaqt Kapsulasi", "description": "Vaqt orqali versiya nazorati vizualizatsiyasi", "tags": ["Git", "Vizualizatsiya", "Tarix"] },
       { "title": "Emotion Engine", "description": "Foydalanuvchi hissiy holatiga moslashadigan interfeyslar", "tags": ["Emotion AI", "Adaptiv", "UX"] }
     ],
-    "button": "✨ Yangi Kontseptsiya Yaratish"
+    "button": "Yangi Kontseptsiya Yaratish"
   },
   "timeline": {
     "badge": "// TIME_TUNNEL.tsx",
@@ -123,11 +142,12 @@
     "moreText": "Yangi loyihalar raqamli bo'shliqda yaratilmoqda...",
     "comingSoon": "tez_orada",
     "items": [
-      { "title": "Mars Commerce", "subtitle": "Sayyoralararo E-Tijorat", "description": "Mars mustamlakasi davri uchun mo'ljallangan futuristik elektron tijorat platformasi. Kosmik mahsulot kataloglari va kosmik mavzuli interfeys.", "category": "E-Tijorat", "status": "LIVE" },
-      { "title": "Hamster Kombat", "subtitle": "Tap-to-Earn O'yin Kloni", "description": "Viral Telegram o'yinining mukammal nusxasi. Tap mexanikasi, yangilash tizimlari va qiziqarli animatsiyalar.", "category": "O'yin", "status": "LIVE" },
-      { "title": "Hacker Portfolio", "subtitle": "Cyberpunk Dasturchi Sayti", "description": "Neon bilan to'ldirilgan, kiberpankdan ilhomlangan portfolio. Terminal estetikasi zamonaviy dizayn bilan uchrashadi.", "category": "Portfolio", "status": "LIVE" },
-      { "title": "Foodi Restaurant", "subtitle": "Premium Restoran Sahifasi", "description": "Zamonaviy restoran uchun jozibali landing page. Chiroyli ovqat fotosuratlari va menyu namoyishlari.", "category": "Landing Page", "status": "LIVE" },
-      { "title": "YouTube Clone", "subtitle": "Video Streaming Platformasi", "description": "Video ijro etish, qidirish, kanal sahifalari va tanish interfeysga ega keng qamrovli YouTube kloni.", "category": "Kloni", "status": "LIVE" }
+      { "title": "Keyron", "subtitle": "IT Development Company", "description": "React va TailwindCSS asosida yaratilgan zamonaviy IT-kompaniya sayti. Dasturiy ta'minot ishlab chiqish, veb va mobil ilovalar, jamoa va aloqa bo'limlari mavjud.", "category": "IT Kompaniya", "status": "LIVE" },
+      { "title": "Velocity", "subtitle": "Velosiped Brendi Landingi", "description": "Zamonaviy velosiped brendi uchun lending. Velosiped dizayni, texnik xizmat, upgrade xizmatlari va afzalliklar bo'limlari bilan jihozlangan.", "category": "Landing Page", "status": "LIVE" },
+      { "title": "Indore Plants", "subtitle": "O'simliklar Do'koni Landingi", "description": "TailwindCSS asosida yaratilgan o'simliklar do'koni uchun lending. Mahsulotlar katalogi, xizmatlar va mijozlar fikrlari mavjud.", "category": "E-Tijorat", "status": "LIVE" },
+      { "title": "Fast Food Burger", "subtitle": "Restoran Landing Sahifasi", "description": "Burgerxona uchun zamonaviy och rangli lending. Menyu, mashhur taomlar, aksiyalar va 3D-illyustratsiyalar bilan boyitilgan.", "category": "Restoran", "status": "LIVE" },
+      { "title": "Sansiro", "subtitle": "Fashion Clothing Store", "description": "Zamonaviy va qulay online kiyim do'koni. Mahsulotlarni kategoriyalar bo'yicha saralash, qidiruv va filtrlar, mahsulot tafsilotlari va savatcha funksiyasi bilan jihozlangan.", "category": "E-Tijorat", "status": "LIVE" },
+      { "title": "ABC Auto", "subtitle": "Avtomobil Bozori", "description": "Avtomobillarni ko'rish va qidirish uchun zamonaviy platforma. Katalog, qidiruv va filtrlash, avtomobil tafsilotlari va intuitiv navigatsiya bilan jihozlangan.", "category": "Marketplace", "status": "LIVE" }
     ]
   },
   "finale": {
@@ -145,7 +165,7 @@
     "description": "Har bir kod qatori - fikr, har bir komponent - xotira, har bir animatsiya - hissiyot. Bu frontend dasturchining raqamli ongi.",
     "restart": "Qaytadan Boshlash",
     "backToLobby": "Lobbiga Qaytish",
-    "builtWith": "❤️ va ko'plab qahva bilan yaratilgan"
+    "builtWith": "Sevgi va ko'plab qahva bilan yaratilgan"
   },
   "sound": {
     "audioSystem": "Audio Tizim",
